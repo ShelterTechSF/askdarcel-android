@@ -29,4 +29,6 @@ $ cd askdarcel-app/askDarcelApp
 $ npm install
 ```
 [xcode]: <https://developer.apple.com/downloads/>
-[geny;: <https://www.genymotion.com/>
+[geny]: <https://www.genymotion.com/>
+[react-native]: <https://facebook.github.io/react-native/>
+[redux]: <http://redux.js.org/>
