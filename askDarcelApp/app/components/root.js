@@ -32,6 +32,7 @@ class RootComponent extends Component {
     return (
       <Provider store={store}>
         <NavBar />
+        <CategoryView {...this.props} />
       </Provider>
     )
   }

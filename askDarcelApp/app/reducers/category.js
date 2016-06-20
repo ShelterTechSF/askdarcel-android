@@ -13,6 +13,10 @@ export default function searchCategory(state = initialState, action = {}) {
         categoryId: action.categoryId,
         categoryName: action.categoryName
       })
+    case type.LOAD_CATEGORIES:
+      return Object.assign({}, state, {
+        categories: [{id: 1, name: "Shelter"}, {id: 2, name: "Food"}]
+      })
     default:
       return state
   }
