@@ -13,12 +13,12 @@ class NavBar extends Component {
   
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Text style={styles.welcome}>
           Ask Darcel
         </Text>
         <Text>
-          Find the best community resources for your needs
+          Gaaaaaaaaah the best community resources for your needs
         </Text>
         <TextInput placeholder="I'm looking for..." />
       </View>

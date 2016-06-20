@@ -17,10 +17,15 @@ class CategoryView extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    categoryActions.fetchCategories();
+  }
+
   render() {
     return (
-      <div>
-      </div>
+      <View>
+        <Text>Categories</Text>
+      </View>
     );
   }
 };

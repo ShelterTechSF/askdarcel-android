@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 
 // import components needed
 import NavBar from './NavBar';
+import CategoryView from './CategoryView';
 
 // import styles
 import styles from '../styles/main';
@@ -31,8 +32,11 @@ class RootComponent extends Component {
   render() {
     return (
       <Provider store={store}>
-        <NavBar />
-        <CategoryView {...this.props} />
+        <View style={styles.container}>
+          <Text>Test</Text>
+          <NavBar />
+          <CategoryView {...this.props} />
+        </View>
       </Provider>
     )
   }
