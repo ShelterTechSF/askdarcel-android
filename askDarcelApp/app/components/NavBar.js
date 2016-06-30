@@ -18,7 +18,7 @@ class NavBar extends Component {
           Ask Darcel
         </Text>
         <Text>
-          Gaaaaaaaaah the best community resources for your needs
+          Find the best community resources for your needs
         </Text>
         <TextInput placeholder="I'm looking for..." />
       </View>

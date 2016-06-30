@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import store from '../config/store';
 
 export function searchCategory(categoryId, categoryName) {
   return {
@@ -16,20 +17,24 @@ function requestCategories() {
   }
 };
 
-function receiveCategories(response) {
-  console.log(response);
+function receiveCategories(categories) {
+  let list = JSON.parse(categories);
+  console.log(list[1]);
   return {
     type: types.RECEIVE_CATEGORIES,
-    categories: [],
-    receivedAt: Date.now()
+    list,
+    receivedAt: Date.now(),
+    isFetching: false
   }
 }
 
 export function fetchCategories() {
-  fetch('http://localhost:3000/categories')
+  requestCategories();
+  fetch('http://staging.askdarcel.org/api/categories')
   .then((response) => response.text())
   .then((responseText) => {
-    console.log(responseText);
+    console.log('THE TEXT PASSED TO RECIEVE CATS',responseText);
+    store.dispatch(receiveCategories(responseText));
   })
   .catch((error) => {
     console.warn(error);

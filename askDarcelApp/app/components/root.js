@@ -6,20 +6,15 @@ import {
 } from 'react-native';
 
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import * as reducers from '../reducers';
-import thunk from 'redux-thunk';
 
 // import components needed
 import NavBar from './NavBar';
-import CategoryView from './CategoryView';
+import Categories from './Categories';
 
 // import styles
 import styles from '../styles/main';
 
-
-const reducer = combineReducers(reducers);
-const store = createStore(reducer, applyMiddleware(thunk));
+import store from '../config/store';
 
 console.log('Initial state: ', store.getState());
 
@@ -33,9 +28,8 @@ class RootComponent extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <Text>Test</Text>
           <NavBar />
-          <CategoryView {...this.props} />
+          <Categories {...this.props} />
         </View>
       </Provider>
     )

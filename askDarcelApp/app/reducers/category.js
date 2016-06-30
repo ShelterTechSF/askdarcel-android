@@ -2,10 +2,15 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   categoryId: 1,
-  categoryName: "Shelter"
+  categoryName: "Shelter",
+  categories: {
+    list: [],
+    isFetching: false,
+    receivedAt: null
+  }
 };
 
-export default function searchCategory(state = initialState, action = {}) {
+export default function searchCategories(state = initialState, action = {}) {
 
   switch(action.type) {
     case types.SEARCH_CATEGORY:
@@ -13,9 +18,19 @@ export default function searchCategory(state = initialState, action = {}) {
         categoryId: action.categoryId,
         categoryName: action.categoryName
       })
-    case types.LOAD_CATEGORIES:
+    case types.REQUEST_CATEGORIES:
       return Object.assign({}, state, {
-        categories: [{id: 1, name: "Shelter"}, {id: 2, name: "Food"}]
+        categories: Object.assign({}, state.categories, {
+          isFetching: action.isFetching
+        })
+      })
+    case types.RECEIVE_CATEGORIES:
+      return Object.assign({}, state, {
+        categories: {
+          list: action.list, 
+          isFetching: action.isFetching,
+          receivedAt: action.receivedAt
+        }
       })
     default:
       return state

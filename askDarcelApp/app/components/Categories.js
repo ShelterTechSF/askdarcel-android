@@ -19,12 +19,18 @@ class CategoryView extends Component {
 
   componentDidMount() {
     categoryActions.fetchCategories();
+    console.log("CAT PROPS ___________", this.props);
   }
 
   render() {
     return (
       <View>
-        <Text>Categories</Text>
+        <Text>Browse Categories</Text>
+        {
+          this.props.category.categories.list.map(category => {
+            <Text>category.name</Text>
+          })
+        }
       </View>
     );
   }
