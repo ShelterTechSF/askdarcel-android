@@ -1,3 +1,9 @@
-import category from './category';
+import { combineReducers } from "redux";
 
-export { category };
+import category from './category';
+import resource from './resource';
+
+export default combineReducers({
+  category,
+  resource
+});

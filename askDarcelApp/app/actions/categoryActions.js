@@ -1,5 +1,4 @@
 import * as types from './actionTypes';
-import store from '../config/store';
 
 export function searchCategory(categoryId, categoryName) {
   return {
@@ -9,34 +8,23 @@ export function searchCategory(categoryId, categoryName) {
   };
 };
 
-// need an async call to api here
-function requestCategories() {
-  return {
-    type: types.REQUEST_CATEGORIES,
-    isFetching: true
+export function fetchCategories() {
+  return function(dispatch) {
+    dispatch({type: types.FETCH_CATEGORIES});
+    fetch("http://192.168.1.66:3000/categories")
+      .then((response) => response.json())
+      .then((responseJ) => {
+        dispatch({type: types.FETCH_CATEGORIES_FULFILLED, payload: responseJ})
+      })
+      .catch((err) => {
+        dispatch({type: types.FETCH_CATEGORIES_REJECTED, payload: err})
+      })
   }
 };
 
-function receiveCategories(categories) {
-  let list = JSON.parse(categories);
-  console.log(list[1]);
+export function setCategory(category, id) {
   return {
-    type: types.RECEIVE_CATEGORIES,
-    list,
-    receivedAt: Date.now(),
-    isFetching: false
+    type: types.SET_CATEGORY,
+    payload: {name: category, id: id}
   }
-}
-
-export function fetchCategories() {
-  requestCategories();
-  fetch('http://staging.askdarcel.org/api/categories')
-  .then((response) => response.text())
-  .then((responseText) => {
-    console.log('THE TEXT PASSED TO RECIEVE CATS',responseText);
-    store.dispatch(receiveCategories(responseText));
-  })
-  .catch((error) => {
-    console.warn(error);
-  });
 }

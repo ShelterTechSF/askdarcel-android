@@ -3,6 +3,8 @@ import * as types from '../actions/actionTypes';
 const initialState = {
   id: null,
   name: null,
+  current: null,
+  currentId: null,
   list: [],
   fetching: false,
   receivedAt: null,
@@ -11,18 +13,18 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
-    case types.FETCH_CATEGORIES:
+    case types.FETCH_RESOURCES:
       return {...state, fetching: true}
-    case types.FETCH_CATEGORIES_FULFILLED: {
+    case types.FETCH_RESOURCES_REJECTED: {
+      return {...state, fetching: false, error: action.payload}
+    }
+    case types.FETCH_RESOURCES_FULFILLED: {
       return {
         ...state,
         fetching: false,
         recievedAt: new Date,
-        list: action.payload, 
+        user: action.payload,
       }
-    }
-    case types.FETCH_CATEGORIES_REJECTED: {
-      return {...state, fetching: false, error: action.payload}
     }
     default:
       return state;

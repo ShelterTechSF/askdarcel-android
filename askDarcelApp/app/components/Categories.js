@@ -7,36 +7,40 @@ import {
 // import styles
 import styles from '../styles/main';
 
-import * as categoryActions from '../actions/categoryActions';
+import { fetchCategories } from '../actions/categoryActions';
 
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-class CategoryView extends Component {
-  constructor(props) {
-    super(props);
-  }
+@connect((store) => {
+  return {
+    categories: store.category.list,
+    fetched: store.category.fetched,
+    fetching: store.category.fetching,
+    categoryId: store.category.id,
+    error: store.category.error
+  };
+})
 
-  componentDidMount() {
-    categoryActions.fetchCategories();
-    console.log("CAT PROPS ___________", this.props);
+class CategoryView extends Component {
+
+  componentWillMount() {
+    this.props.dispatch(fetchCategories());
   }
 
   render() {
+    const { categories } = this.props;
+    const catNames = categories.map(cat => <Text>{cat.name}</Text>)
     return (
       <View>
         <Text>Browse Categories</Text>
-        {
-          this.props.category.categories.list.map(category => {
-            <Text>category.name</Text>
-          })
-        }
+        {catNames}
       </View>
     );
   }
 };
 
-let mapStateToProps = (state) => ({category: state.category});
-let actionCreators = (dispatch) => ({ categoryActions: bindActionCreators(categoryActions, dispatch) });
+// let mapStateToProps = (state) => ({category: state.category});
+// let actionCreators = (dispatch) => ({ categoryActions: bindActionCreators(categoryActions, dispatch) });
 
-export default connect(mapStateToProps, actionCreators)(CategoryView);
+export default CategoryView;
