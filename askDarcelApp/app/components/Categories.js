@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import {
+  ScrollView,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 
 // import styles
 import styles from '../styles/main';
+import Category from './Category';
 
 import { fetchCategories } from '../actions/categoryActions';
 
@@ -29,12 +32,16 @@ class CategoryView extends Component {
   }
 
   render() {
-    const { categories } = this.props;
-    const catNames = categories.map(cat => <Text>{cat.name}</Text>)
+    let { categories } = this.props;
+    let categoryList = categories.map((category, i) => 
+      <Category category={category} onPress={this._onPressButton} key={i}/>
+    )
     return (
       <View>
         <Text>Browse Categories</Text>
-        {catNames}
+        <ScrollView>
+          {categoryList}
+        </ScrollView>
       </View>
     );
   }

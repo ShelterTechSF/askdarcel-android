@@ -14,7 +14,7 @@ class NavBar extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.welcome}>
+        <Text style={styles.navigation}>
           Ask Darcel
         </Text>
         <Text>
