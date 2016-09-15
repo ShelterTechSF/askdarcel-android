@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
   Image,
   Text,
-  TouchableHighlight,
   View
 } from 'react-native';
 
@@ -20,11 +19,9 @@ class Category extends Component {
     return (
       <View>
         <Image source={img} />
-        <TouchableHighlight onPress={this.props.onPress}>
-          <Text>
-            {cat.name}
-          </Text>
-        </TouchableHighlight>
+        <Text>
+          {cat.name}
+        </Text>
       </View>
     );
   }

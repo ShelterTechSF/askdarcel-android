@@ -25,7 +25,7 @@ import { connect } from 'react-redux';
   };
 })
 
-class CategoryView extends Component {
+class Categories extends Component {
 
   componentWillMount() {
     this.props.dispatch(fetchCategories());
@@ -34,7 +34,9 @@ class CategoryView extends Component {
   render() {
     let { categories } = this.props;
     let categoryList = categories.map((category, i) => 
-      <Category category={category} onPress={this._onPressButton} key={i}/>
+      <TouchableHighlight onPress={this._onButtonPress} key={i}>
+        <Category category={category} key={i}/>
+      </TouchableHighlight>
     )
     return (
       <View>
@@ -45,9 +47,6 @@ class CategoryView extends Component {
       </View>
     );
   }
-};
+}
 
-// let mapStateToProps = (state) => ({category: state.category});
-// let actionCreators = (dispatch) => ({ categoryActions: bindActionCreators(categoryActions, dispatch) });
-
-export default CategoryView;
+export default Categories;
