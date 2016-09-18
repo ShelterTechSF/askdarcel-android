@@ -31,11 +31,15 @@ class Categories extends Component {
     this.props.dispatch(fetchCategories());
   }
 
+  _onButtonPress() { 
+    return console.warn("Pressed");
+  }
+
   render() {
     let { categories } = this.props;
-    let categoryList = categories.map((category, i) => 
-      <TouchableHighlight onPress={this._onButtonPress} key={i}>
-        <Category category={category} key={i}/>
+    let categoryList = categories.map((category, i) =>  
+      <TouchableHighlight onPress={this._onButtonPress.bind(this)} key={i}>
+        <Category category={category} idx={i}/>
       </TouchableHighlight>
     )
     return (

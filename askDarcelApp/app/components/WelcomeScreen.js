@@ -21,7 +21,7 @@ class WelcomeScreen extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Header />
         <SearchBar />
         <Categories />

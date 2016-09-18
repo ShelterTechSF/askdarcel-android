@@ -17,6 +17,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  toolbar: {
+    backgroundColor: '#a9a9a9',
+    height: 56,
+  },
+  spinner: {
+    width: 30,
+    height: 30,
+    marginRight: 16,
+  },
 });
 
 export default styles;

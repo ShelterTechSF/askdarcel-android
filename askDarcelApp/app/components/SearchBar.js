@@ -4,11 +4,16 @@ import {
   TextInput
 } from 'react-native'
 
+import styles from '../styles/main';
+
 class SearchBar extends Component {
   render() {
     return (
       <View>
-        <TextInput placeholder="I'm looking for..." />
+        <TextInput 
+          placeholder="I'm looking for..."
+          ref="input"
+        />
       </View>
     )
   }
