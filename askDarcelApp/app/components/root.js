@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Text,
   TextInput,
@@ -8,8 +8,8 @@ import {
 import { Provider } from 'react-redux';
 
 // import components needed
-import NavBar from './NavBar';
-import Categories from './Categories';
+import WelcomeScreen from './WelcomeScreen';
+import SimpleNavigationApp from './SimpleNavigator';
 
 // import styles
 import styles from '../styles/main';
@@ -27,10 +27,7 @@ class RootComponent extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <NavBar />
-          <Categories {...this.props} />
-        </View>
+        <WelcomeScreen />
       </Provider>
     )
   }

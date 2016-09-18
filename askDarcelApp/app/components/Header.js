@@ -8,22 +8,21 @@ import {
 // import styles
 import styles from '../styles/main';
 
-class NavBar extends Component {
+class Header extends Component {
   // Return the minimal nav bar unless the current view in state is the homepage
   
   render() {
     return (
       <View>
-        <Text style={styles.navigation}>
+        <Text style={styles.header}>
           Ask Darcel
         </Text>
         <Text>
           Find the best community resources for your needs
         </Text>
-        <TextInput placeholder="I'm looking for..." />
       </View>
     );
   }
 }
 
-export default NavBar;
+export default Header;
