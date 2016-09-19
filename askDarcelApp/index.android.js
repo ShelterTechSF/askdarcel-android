@@ -27,7 +27,7 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
 });
 
 const RouteMapper = (route, navigationOperations, onComponentRef) => {
-  _navigator = navigationOperations;
+  let _navigator = navigationOperations;
   if (route.name === 'welcome') {
     console.warn("Wecome");
     return (
@@ -58,7 +58,7 @@ class askDarcelApp extends Component {
     return (
       <Provider store={store}>
         <Navigator
-          style={styles.container}
+          style={{flex: 1}}
           initialRoute={initialRoute}
           configureScene={() => Navigator.SceneConfigs.FadeAndroid}
           renderScene={RouteMapper}

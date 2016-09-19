@@ -39,7 +39,9 @@ class Categories extends Component {
     let { categories } = this.props;
     let categoryList = categories.map((category, i) =>  
       <TouchableHighlight onPress={this._onButtonPress.bind(this)} key={i}>
-        <Category category={category} idx={i}/>
+        <View>
+          <Category category={category} idx={i}/>
+        </View>
       </TouchableHighlight>
     )
     return (
