@@ -27,9 +27,9 @@ BackAndroid.addEventListener('hardwareBackPress', () => {
 });
 
 const RouteMapper = (route, navigationOperations, onComponentRef) => {
-  let _navigator = navigationOperations;
+  _navigator = navigationOperations;
   if (route.name === 'welcome') {
-    console.warn("Wecome");
+    console.warn("Welcome");
     return (
       <WelcomeScreen navigator={navigationOperations} />
     );

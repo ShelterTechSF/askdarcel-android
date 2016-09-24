@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native';
 
+import dismissKeyboard from 'dismissKeyboard';
+
 // import styles
 import styles from '../styles/main';
 import Category from './Category';
@@ -31,14 +33,31 @@ class Categories extends Component {
     this.props.dispatch(fetchCategories());
   }
 
-  _onButtonPress() { 
-    return console.warn("Pressed");
+  searchResources(categoryId) {
+    if (Platform.OS === 'ios') {
+      this.props.navigator.push({
+        title: this.props.categories[categoryId].name,
+        component: ResourcesScreen,
+        passProps: this.props.categories[categoryId]
+      });
+    } else {
+      dismissKeyboard();
+      this.props.navigator.push({
+        title: this.props.categories[categoryId].name,
+        name: 'resources',
+        category: this.props.categories[categoryId]
+      });
+    }
+  }
+
+  _onButtonPress(idx) { 
+    return console.warn("Pressed " + idx);
   }
 
   render() {
     let { categories } = this.props;
     let categoryList = categories.map((category, i) =>  
-      <TouchableHighlight onPress={this._onButtonPress.bind(this)} key={i}>
+      <TouchableHighlight onPress={this._onButtonPress.bind(this, i)} key={i}>
         <View>
           <Category category={category} idx={i}/>
         </View>
