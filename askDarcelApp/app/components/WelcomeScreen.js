@@ -24,7 +24,7 @@ class WelcomeScreen extends Component {
       <View style={styles.container}>
         <Header />
         <SearchBar />
-        <Categories />
+        <Categories navigator={this.props.navigator}/>
       </View>
     )
   }

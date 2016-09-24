@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {
+  ActivityIndicator,
+  Platform,
   ScrollView,
   Text,
   TouchableHighlight,
@@ -11,6 +13,7 @@ import dismissKeyboard from 'dismissKeyboard';
 // import styles
 import styles from '../styles/main';
 import Category from './Category';
+import ResourcesScreen from './ResourcesScreen';
 
 import { fetchCategories } from '../actions/categoryActions';
 
@@ -51,7 +54,8 @@ class Categories extends Component {
   }
 
   _onButtonPress(idx) { 
-    return console.warn("Pressed " + idx);
+    console.warn("Pressed " + idx);
+    this.searchResources(idx);
   }
 
   render() {
