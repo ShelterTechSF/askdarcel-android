@@ -2,7 +2,7 @@ import * as types from './actionTypes';
 
 export function fetchResources(categoryId) {
   return function(dispatch) {
-    fetch("http://localhost:3000/api/resources?category_id="+categoryId)
+    fetch("http://192.168.1.66:3000/resources?category_id="+categoryId)
       .then((response) => response.json())
       .then((response) => {
         dispatch({type: types.FETCH_RESOURCES_FULFILLED, payload: response.data})

@@ -24,6 +24,9 @@ export default function reducer(state=initialState, action) {
     case types.FETCH_CATEGORIES_REJECTED: {
       return {...state, fetching: false, error: action.payload}
     }
+    case types.SET_CATEGORY: {
+      return {...state, id: action.payload.id, name: action.payload.name}
+    }
     default:
       return state;
   }

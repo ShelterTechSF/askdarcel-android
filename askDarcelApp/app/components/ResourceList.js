@@ -8,6 +8,19 @@ import {
 // import styles
 import styles from '../styles/main';
 
+import { connect } from 'react-redux';
+
+@connect((store) => {
+  return {
+    fetched: store.resource.fetched,
+    fetching: store.resource.fetching,
+    categoryId: store.category.id,
+    categoryName: store.category.name,
+    error: store.category.error,
+    resources: store.resource.list,
+  };
+})
+
 class ResourceList extends Component {
   // Single resources for list in Categories view
   
@@ -17,7 +30,7 @@ class ResourceList extends Component {
     return (
       <View>
         <Text>
-          A list of resources
+          A list of resources for 
         </Text>
       </View>
     );

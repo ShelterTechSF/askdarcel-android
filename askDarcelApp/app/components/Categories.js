@@ -15,7 +15,7 @@ import styles from '../styles/main';
 import Category from './Category';
 import ResourcesScreen from './ResourcesScreen';
 
-import { fetchCategories } from '../actions/categoryActions';
+import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 // import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -53,15 +53,16 @@ class Categories extends Component {
     }
   }
 
-  _onButtonPress(idx) { 
-    console.warn("Pressed " + idx);
+  _onButtonPress(category, idx) { 
+    console.warn("Pressed " + category + idx);
+    this.props.dispatch(setCategory(category, idx));
     this.searchResources(idx);
   }
 
   render() {
     let { categories } = this.props;
     let categoryList = categories.map((category, i) =>  
-      <TouchableHighlight onPress={this._onButtonPress.bind(this, i)} key={i}>
+      <TouchableHighlight onPress={this._onButtonPress.bind(this, category.name, i)} key={i}>
         <View>
           <Category category={category} idx={i}/>
         </View>
