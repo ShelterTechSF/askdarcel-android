@@ -8,7 +8,7 @@ import {
 // import styles
 import styles from '../styles/main';
 
-class ResourceScreen extends Component {
+class ResourceDetailScreen extends Component {
   // Single selected resource, detail view
   
   render() {
@@ -22,4 +22,4 @@ class ResourceScreen extends Component {
   }
 }
 
-export default ResourceScreen;
+export default ResourceDetailScreen;

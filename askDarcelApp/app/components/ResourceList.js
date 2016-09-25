@@ -50,7 +50,7 @@ class ResourceList extends Component {
     )
     return (
       <View>
-        <Text>
+        <Text style={styles.title}>
           Found {resources.length} results for {this.props.categoryName}
         </Text>
         <ScrollView>

@@ -19,7 +19,7 @@ class Category extends Component {
     return (
       <View>
         <Image source={img} />
-        <Text>
+        <Text style={styles.category}>
           {cat.name}
         </Text>
       </View>

@@ -70,7 +70,7 @@ class Categories extends Component {
     )
     return (
       <View>
-        <Text>Browse Categories</Text>
+        <Text style={styles.title}>Browse Categories</Text>
         <ScrollView>
           {categoryList}
         </ScrollView>

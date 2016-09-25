@@ -12,6 +12,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  title: {
+    fontSize: 30,
+    margin: 10,
+  },
   category: {
     fontSize: 20,
     textAlign: 'center',
@@ -25,6 +29,10 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
     marginRight: 16,
+  },
+  resourceItem: {
+    fontSize: 20,
+    marginLeft: 10,
   },
 });
 

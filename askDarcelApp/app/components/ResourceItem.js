@@ -14,7 +14,7 @@ class ResourceItem extends Component {
   render() {
     return (
       <View>
-        <Text>
+        <Text style={styles.resourceItem}>
           {this.props.resource.name}
         </Text>
       </View>

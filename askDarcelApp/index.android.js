@@ -15,7 +15,7 @@ import store from './app/config/store';
 
 import WelcomeScreen from './app/components/WelcomeScreen';
 import ResourcesScreen from './app/components/ResourcesScreen';
-import SingleResourceScreen from './app/components/SingleResourceScreen';
+import SingleResourceScreen from './app/components/ResourceDetailScreen';
 
 let _navigator;
 BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -43,6 +43,21 @@ const RouteMapper = (route, navigationOperations, onComponentRef) => {
           titleColor="white"
           title="Resources" />
         <ResourcesScreen
+          style={{flex: 1}}
+          navigator={navigationOperations}
+        />
+      </View>
+    );
+  } else if (route.name === 'resource') {
+    return (
+      <View style={{flex: 1}}>
+        <ToolbarAndroid
+          actions={[]}
+          onIconClicked={navigationOperations.pop}
+          style={styles.toolbar}
+          titleColor="white"
+          title="Resources" />
+        <ResourceDetailScreen
           style={{flex: 1}}
           navigator={navigationOperations}
         />

@@ -17,7 +17,6 @@ class ResourcesScreen extends Component {
     return (
       <View>
         <Header />
-        <Text>Resources</Text>
         <ResourceList />
       </View>
     )
