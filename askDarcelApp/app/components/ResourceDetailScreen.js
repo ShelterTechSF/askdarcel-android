@@ -8,15 +8,15 @@ import {
 // import styles
 import styles from '../styles/main';
 
+import ResourceDetail from './ResourceDetail';
+
 class ResourceDetailScreen extends Component {
   // Single selected resource, detail view
   
   render() {
     return (
       <View>
-        <Text>
-          A Single Resource
-        </Text>
+        <ResourceDetail />
       </View>
     );
   }

@@ -17,7 +17,7 @@ class ResourcesScreen extends Component {
     return (
       <View>
         <Header />
-        <ResourceList />
+        <ResourceList navigator={this.props.navigator}/>
       </View>
     )
   }

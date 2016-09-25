@@ -15,7 +15,7 @@ import store from './app/config/store';
 
 import WelcomeScreen from './app/components/WelcomeScreen';
 import ResourcesScreen from './app/components/ResourcesScreen';
-import SingleResourceScreen from './app/components/ResourceDetailScreen';
+import ResourceDetailScreen from './app/components/ResourceDetailScreen';
 
 let _navigator;
 BackAndroid.addEventListener('hardwareBackPress', () => {

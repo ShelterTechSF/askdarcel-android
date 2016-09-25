@@ -32,8 +32,12 @@ const styles = StyleSheet.create({
   },
   resourceItem: {
     fontSize: 20,
-    marginLeft: 10,
+    marginLeft: 15,
   },
+  resourceDetail: {
+    fontSize: 20,
+    marginLeft: 15,
+  }
 });
 
 export default styles;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   Image,
+  Platform,
   ScrollView,
   Text,
   TouchableHighlight,
@@ -13,6 +14,7 @@ import styles from '../styles/main';
 import { connect } from 'react-redux';
 import { fetchResources, setResource } from '../actions/resourceActions';
 import ResourceItem from './ResourceItem';
+import dismissKeyboard from 'dismissKeyboard';
 
 @connect((store) => {
   return {
@@ -34,9 +36,27 @@ class ResourceList extends Component {
     this.props.dispatch(fetchResources(categoryId));
   }
 
+  getResourceDetails(resource) {
+    if (Platform.OS === 'ios') {
+      this.props.navigator.push({
+        title: resource.name,
+        component: ResourceDetailScreen,
+        passProps: resource
+      });
+    } else {
+      dismissKeyboard();
+      this.props.navigator.push({
+        title: resource.name,
+        name: 'resource',
+        resource: resource
+      });
+    }
+  }
+
   _onButtonPress(resource, idx) { 
     console.warn("Pressed " + resource.name);
     this.props.dispatch(setResource(resource, idx));
+    this.getResourceDetails(resource);
   }
 
   render() {
