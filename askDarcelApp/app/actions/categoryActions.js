@@ -22,9 +22,9 @@ export function fetchCategories() {
   }
 };
 
-export function setCategory(category, id) {
+export function setCategory(name, id) {
   return {
     type: types.SET_CATEGORY,
-    payload: {name: category, id: id}
+    payload: {name, id}
   }
 }

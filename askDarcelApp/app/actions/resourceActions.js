@@ -5,7 +5,7 @@ export function fetchResources(categoryId) {
     fetch("http://192.168.1.66:3000/resources?category_id="+categoryId)
       .then((response) => response.json())
       .then((response) => {
-        dispatch({type: types.FETCH_RESOURCES_FULFILLED, payload: response.data})
+        dispatch({type: types.FETCH_RESOURCES_FULFILLED, payload: response.resources})
       })
       .catch((err) => {
         dispatch({type: types.FETCH_RESOURCES_REJECTED, payload: err})
@@ -13,9 +13,9 @@ export function fetchResources(categoryId) {
   }
 };
 
-export function setResource(name, id) {
+export function setResource(resource, idx) {
   return {
     type: types.SET_RESOURCE,
-    payload: {name: name, id: id}
+    payload: {resource, idx}
   }
 }

@@ -1,10 +1,8 @@
 import * as types from '../actions/actionTypes';
 
 const initialState = {
-  id: null,
-  name: null,
   current: null,
-  currentId: null,
+  idx: null,
   list: [],
   fetching: false,
   receivedAt: null,
@@ -23,7 +21,14 @@ export default function reducer(state=initialState, action) {
         ...state,
         fetching: false,
         recievedAt: new Date,
-        user: action.payload,
+        list: action.payload,
+      }
+    }
+    case types.SET_RESOURCE: {
+      return {
+        ...state,
+        idx: action.payload.idx,  
+        current: action.payload.resource
       }
     }
     default:
