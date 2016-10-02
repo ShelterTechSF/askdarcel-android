@@ -39,18 +39,19 @@ class Categories extends Component {
   }
 
   searchResources(categoryId) {
+    let idx = categoryId - 1;
     if (Platform.OS === 'ios') {
       this.props.navigator.push({
-        title: this.props.categories[categoryId].name,
+        title: this.props.categories[idx].name,
         component: ResourcesScreen,
-        passProps: this.props.categories[categoryId]
+        passProps: this.props.categories[idx]
       });
     } else {
       dismissKeyboard();
       this.props.navigator.push({
-        title: this.props.categories[categoryId].name,
+        title: this.props.categories[idx].name,
         name: 'resources',
-        category: this.props.categories[categoryId]
+        category: this.props.categories[idx]
       });
     }
   }
