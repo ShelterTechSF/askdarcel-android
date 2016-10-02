@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
   };
 })
 
-class MapView extends Component {
+class LocationView extends Component {
   componentWillMount() {
     this.props.dispatch(getUserLocation());
   }
@@ -39,4 +39,4 @@ class MapView extends Component {
   }
 }
 
-export default MapView;
+export default LocationView;

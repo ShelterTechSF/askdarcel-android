@@ -11,7 +11,7 @@ import {
 import Header from './Header';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
-import MapView from './MapView';
+import LocationView from './LocationView';
 
 // import styles
 import styles from '../styles/main';
@@ -25,7 +25,7 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MapView />
+        <LocationView />
         <Header />
         <SearchBar />
         <Categories navigator={this.props.navigator}/>
