@@ -2,6 +2,9 @@
 #
 .DS_Store
 
+TestMap.js
+config.js
+
 # Xcode
 #
 build/

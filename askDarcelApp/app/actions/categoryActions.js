@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import config from '../config/config';
 
 export function searchCategory(categoryId, categoryName) {
   return {
@@ -11,7 +12,8 @@ export function searchCategory(categoryId, categoryName) {
 export function fetchCategories() {
   return function(dispatch) {
     dispatch({type: types.FETCH_CATEGORIES});
-    fetch("http://192.168.1.66:3000/categories")
+    let url = config.API_URL + '/categories';
+    fetch(url)
       .then((response) => response.json())
       .then((responseJ) => {
         dispatch({type: types.FETCH_CATEGORIES_FULFILLED, payload: responseJ})

@@ -18,7 +18,7 @@ export default function reducer(state=initialState, action) {
         ...state,
         fetching: false,
         recievedAt: new Date,
-        list: action.payload, 
+        list: action.payload.categories, 
       }
     }
     case types.FETCH_CATEGORIES_REJECTED: {
