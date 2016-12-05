@@ -14,7 +14,7 @@ import Categories from './Categories';
 import LocationView from './LocationView';
 
 // import styles
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 
 class WelcomeScreen extends Component {
 
@@ -24,7 +24,7 @@ class WelcomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={commonStyles.container}>
         <LocationView />
         <Header />
         <SearchBar />
