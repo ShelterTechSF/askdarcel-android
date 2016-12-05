@@ -7,11 +7,8 @@ import {
   View
 } from 'react-native';
 
-// import styles
-import styles from '../styles/main';
-
 import { connect } from 'react-redux';
-import TestMap from './TestMap';
+import { resourceStyles } from '../styles';
 
 @connect((store) => {
   return {
@@ -27,11 +24,11 @@ class ResourceDetail extends Component {
   render() {
     let resource = this.props.resource;
     return (
-      <View style={{flex: 1}}>
-        <Text style={{flex: 1, backgroundColor: 'powderblue'}}>
+      <View style={resourceStyles.container}>
+        <Text style={resourceStyles.name}>
           Details for {resource.name}
         </Text>
-        <TestMap />
+        
       </View>
     );
   }

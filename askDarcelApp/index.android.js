@@ -10,8 +10,9 @@ import {
 
 import { Provider } from 'react-redux';
 
-import styles from './app/styles/main';
 import store from './app/config/store';
+
+import { commonStyles } from './app/styles';
 
 import WelcomeScreen from './app/components/WelcomeScreen';
 import ResourcesScreen from './app/components/ResourcesScreen';
@@ -39,7 +40,7 @@ const RouteMapper = (route, navigationOperations, onComponentRef) => {
         <ToolbarAndroid
           actions={[]}
           onIconClicked={navigationOperations.pop}
-          style={styles.toolbar}
+          style={commonStyles.toolbar}
           titleColor="white"
           title="Resources" />
         <ResourcesScreen
@@ -54,7 +55,7 @@ const RouteMapper = (route, navigationOperations, onComponentRef) => {
         <ToolbarAndroid
           actions={[]}
           onIconClicked={navigationOperations.pop}
-          style={styles.toolbar}
+          style={commonStyles.toolbar}
           titleColor="white"
           title="Resources" />
         <ResourceDetailScreen

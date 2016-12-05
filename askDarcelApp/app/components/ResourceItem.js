@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // import styles
-import styles from '../styles/main';
+import { resourceStyles } from '../styles';
 
 class ResourceItem extends Component {
   // A single resource for the resources list
@@ -16,7 +16,7 @@ class ResourceItem extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.resourceItem}>
+        <Text style={resourceStyles.listItem}>
           {this.props.resource.name}
         </Text>
       </View>

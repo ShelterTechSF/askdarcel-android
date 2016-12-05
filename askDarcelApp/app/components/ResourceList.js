@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 // import styles
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 
 import { connect } from 'react-redux';
 import { fetchResources, setResource } from '../actions/resourceActions';
@@ -72,7 +72,7 @@ class ResourceList extends Component {
     )
     return (
       <View>
-        <Text style={styles.title}>
+        <Text style={commonStyles.title}>
           Found {resources.length} results for {this.props.categoryName}
         </Text>
         <ScrollView>

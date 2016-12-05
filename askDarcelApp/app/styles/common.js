@@ -12,6 +12,10 @@ const commonStyles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  input: {
+    height: 100,
+    width: 200,
+  },
   title: {
     fontSize: 30,
     margin: 10,

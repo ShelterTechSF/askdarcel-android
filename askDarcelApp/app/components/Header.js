@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 // import styles
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 
 class Header extends Component {
   // Return the minimal nav bar unless the current view in state is the homepage
@@ -14,7 +14,7 @@ class Header extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.header}>
+        <Text style={commonStyles.header}>
           Ask Darcel
         </Text>
         <Text>

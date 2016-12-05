@@ -7,9 +7,6 @@ import {
   View
 } from 'react-native';
 
-// import styles
-import styles from '../styles/main';
-
 import ResourceDetail from './ResourceDetail';
 
 class ResourceDetailScreen extends Component {

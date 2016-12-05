@@ -13,7 +13,7 @@ import {
 import dismissKeyboard from 'dismissKeyboard';
 
 // import styles
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 import Category from './Category';
 import ResourcesScreen from './ResourcesScreen';
 
@@ -73,7 +73,7 @@ class Categories extends Component {
     )
     return (
       <View>
-        <Text style={styles.title}>Browse Categories</Text>
+        <Text style={commonStyles.title}>Browse Categories</Text>
         <ScrollView>
           {categoryList}
         </ScrollView>
