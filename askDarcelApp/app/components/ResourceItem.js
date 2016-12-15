@@ -15,11 +15,9 @@ class ResourceItem extends Component {
   
   render() {
     return (
-      <View>
-        <Text style={resourceStyles.listItem}>
-          {this.props.resource.name}
-        </Text>
-      </View>
+      <Text style={resourceStyles.listItem}>
+        {this.props.resource.name}
+      </Text>
     );
   }
 }
