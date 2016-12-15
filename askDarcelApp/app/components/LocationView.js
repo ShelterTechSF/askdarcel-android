@@ -6,8 +6,6 @@ import {
   View
 } from 'react-native';
 
-import styles from '../styles/main';
-
 import { getUserLocation } from '../actions/userActions';
 import { connect } from 'react-redux';
 

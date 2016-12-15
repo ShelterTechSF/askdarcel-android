@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create({
+const commonStyles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -12,13 +12,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  input: {
+    height: 100,
+    width: 200,
+  },
   title: {
     fontSize: 30,
-    margin: 10,
-  },
-  category: {
-    fontSize: 20,
-    textAlign: 'center',
     margin: 10,
   },
   toolbar: {
@@ -30,14 +29,6 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 16,
   },
-  resourceItem: {
-    fontSize: 20,
-    marginLeft: 15,
-  },
-  resourceDetail: {
-    fontSize: 20,
-    marginLeft: 15,
-  }
 });
 
-export default styles;
+export { commonStyles };

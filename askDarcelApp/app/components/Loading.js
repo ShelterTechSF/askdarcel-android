@@ -3,7 +3,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 
 class Loading extends Component {
   render() {
@@ -12,7 +12,7 @@ class Loading extends Component {
         animating={this.props.isLoading}
         color="white"
         size="large"
-        style={styles.spinner}
+        style={commonStyles.spinner}
       />
     )
   }

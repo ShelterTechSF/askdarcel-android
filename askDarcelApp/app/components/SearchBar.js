@@ -4,13 +4,14 @@ import {
   TextInput
 } from 'react-native'
 
-import styles from '../styles/main';
+import { commonStyles } from '../styles';
 
 class SearchBar extends Component {
   render() {
     return (
       <View>
-        <TextInput 
+        <TextInput
+          style={commonStyles.input} 
           placeholder="I'm looking for..."
           ref="input"
         />

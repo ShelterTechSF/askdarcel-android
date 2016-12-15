@@ -11,9 +11,6 @@ import { Provider } from 'react-redux';
 import WelcomeScreen from './WelcomeScreen';
 import SimpleNavigationApp from './SimpleNavigator';
 
-// import styles
-import styles from '../styles/main';
-
 import store from '../config/store';
 
 console.log('Initial state: ', store.getState());

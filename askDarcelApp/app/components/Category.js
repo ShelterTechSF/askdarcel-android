@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 // import styles
-import styles from '../styles/main';
+import { categoryStyles } from '../styles';
 
 class Category extends Component {
   // Single category for list in Categories view
@@ -19,9 +19,9 @@ class Category extends Component {
       uri: cat.image_path
     }
     return (
-      <View>
-        <Image source={img} />
-        <Text style={styles.category}>
+      <View style={categoryStyles.container}>
+        <Image source={img} style={categoryStyles.image} />
+        <Text style={categoryStyles.name}>
           {cat.name}
         </Text>
       </View>
