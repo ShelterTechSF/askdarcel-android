@@ -9,7 +9,7 @@ import {
   View
 } from 'react-native';
 
-import { Actions } from 'react-native-router-redux';
+import { Actions } from 'react-native-router-flux';
 import dismissKeyboard from 'dismissKeyboard';
 
 // import styles
@@ -30,7 +30,7 @@ class Categories extends Component {
 
   searchResources(categoryId) {
     let idx = categoryId - 1;
-
+    Actions.resources();
     // if (Platform.OS === 'ios') {
     //   this.props.navigator.push({
     //     title: this.props.categories[idx].name,
@@ -48,7 +48,6 @@ class Categories extends Component {
   }
 
   _onButtonPress(category, idx) { 
-    console.warn("Pressed " + category + idx);
     this.props.dispatch(setCategory(category, idx));
     this.searchResources(idx);
   }

@@ -10,6 +10,8 @@ import {
   View
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 // import styles
 import { commonStyles } from '../styles';
 
@@ -17,17 +19,6 @@ import { connect } from 'react-redux';
 import { fetchResources, setResource } from '../actions/resourceActions';
 import ResourceItem from './ResourceItem';
 import dismissKeyboard from 'dismissKeyboard';
-
-@connect((store) => {
-  return {
-    fetched: store.resource.fetched,
-    fetching: store.resource.fetching,
-    categoryId: store.category.id,
-    categoryName: store.category.name,
-    error: store.resource.error,
-    resources: store.resource.list,
-  };
-})
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
@@ -39,26 +30,25 @@ class ResourceList extends Component {
   }
 
   getResourceDetails(resource) {
-    if (Platform.OS === 'ios') {
-      this.props.navigator.push({
-        title: resource.name,
-        component: ResourceDetailScreen,
-        passProps: resource
-      });
-    } else {
-      dismissKeyboard();
-      this.props.navigator.push({
-        title: resource.name,
-        name: 'resource',
-        resource: resource
-      });
-    }
+    // if (Platform.OS === 'ios') {
+    //   this.props.navigator.push({
+    //     title: resource.name,
+    //     component: ResourceDetailScreen,
+    //     passProps: resource
+    //   });
+    // } else {
+    //   dismissKeyboard();
+    //   this.props.navigator.push({
+    //     title: resource.name,
+    //     name: 'resource',
+    //     resource: resource
+    //   });
+    // }
   }
 
   _onButtonPress(resource, idx) { 
-    console.warn("Pressed " + resource.name);
     this.props.dispatch(setResource(resource, idx));
-    this.getResourceDetails(resource);
+    Actions.resourceDetail();
   }
 
   render() {
@@ -83,4 +73,15 @@ class ResourceList extends Component {
   }
 }
 
-export default ResourceList;
+const mapStateToProps = state => {
+  return {
+    fetched: state.resource.fetched,
+    fetching: state.resource.fetching,
+    categoryId: state.category.id,
+    categoryName: state.category.name,
+    error: state.resource.error,
+    resources: state.resource.list,
+  };
+};
+
+export default connect(mapStateToProps)(ResourceList);

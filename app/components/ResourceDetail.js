@@ -11,14 +11,6 @@ import MapView from 'react-native-maps';
 import { connect } from 'react-redux';
 import { mapStyles, resourceStyles } from '../styles';
 
-@connect((store) => {
-  return {
-    categoryId: store.category.id,
-    categoryName: store.category.name,
-    resource: store.resource.current,
-  };
-})
-
 class ResourceDetail extends Component {
   // Single resources for detail view
 
@@ -48,4 +40,12 @@ class ResourceDetail extends Component {
   }
 }
 
-export default ResourceDetail;
+const mapStateToProps = state => {
+  return {
+    categoryId: state.category.id,
+    categoryName: state.category.name,
+    resource: state.resource.current
+  };
+};
+
+export default connect(mapStateToProps)(ResourceDetail);

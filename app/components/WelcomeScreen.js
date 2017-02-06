@@ -11,7 +11,6 @@ import {
 import Header from './Header';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
-import LocationView from './LocationView';
 
 // import styles
 import { commonStyles } from '../styles';
@@ -25,7 +24,6 @@ class WelcomeScreen extends Component {
   render() {
     return (
       <View style={commonStyles.container}>
-        <LocationView />
         <Header />
         <SearchBar />
         <Categories />
