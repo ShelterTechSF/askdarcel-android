@@ -10,15 +10,12 @@ import {
   View
 } from 'react-native';
 
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
-// import styles
 import { commonStyles } from '../styles';
-
-import { connect } from 'react-redux';
-import { fetchResources, setResource } from '../actions/resourceActions';
 import ResourceItem from './ResourceItem';
-import dismissKeyboard from 'dismissKeyboard';
+import { fetchResources, setResource } from '../actions/resourceActions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
@@ -26,28 +23,11 @@ class ResourceList extends Component {
   componentWillMount() {
     let category = this.props.categoryName;
     let categoryId = this.props.categoryId;
-    this.props.dispatch(fetchResources(categoryId));
-  }
-
-  getResourceDetails(resource) {
-    // if (Platform.OS === 'ios') {
-    //   this.props.navigator.push({
-    //     title: resource.name,
-    //     component: ResourceDetailScreen,
-    //     passProps: resource
-    //   });
-    // } else {
-    //   dismissKeyboard();
-    //   this.props.navigator.push({
-    //     title: resource.name,
-    //     name: 'resource',
-    //     resource: resource
-    //   });
-    // }
+    this.props.fetchResources(categoryId);
   }
 
   _onButtonPress(resource, idx) { 
-    this.props.dispatch(setResource(resource, idx));
+    this.props.setResource(resource, idx);
     Actions.resourceDetail();
   }
 
@@ -84,4 +64,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(ResourceList);
+export default connect(mapStateToProps, { fetchResources, setResource })(ResourceList);
