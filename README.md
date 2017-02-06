@@ -25,7 +25,7 @@ $ npm install -g react-native-cli
 
 ```sh
 $ git clone https://github.com/ShelterTechSF/askdarcel-app.git
-$ cd askdarcel-app/askDarcelApp
+$ cd askdarcel-app
 $ npm install
 ```
 [xcode]: <https://developer.apple.com/downloads/>
