@@ -1,14 +1,4 @@
-
-import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import RootComponent from './app/components/root';
+import RootComponent from './app/Root';
 
-class askDarcelApp extends Component {
-  render() {
-    return (
-      <RootComponent />
-    );
-  }
-}
-
-AppRegistry.registerComponent('askDarcelApp', () => askDarcelApp);
+AppRegistry.registerComponent('askDarcelApp', () => RootComponent);
