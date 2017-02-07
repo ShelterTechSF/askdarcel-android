@@ -16,7 +16,7 @@ import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 
 class Categories extends Component {
-
+  // Categories list for the welcome screen
   componentWillMount() {
     this.props.fetchCategories();
   }

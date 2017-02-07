@@ -7,16 +7,14 @@ import {
   View
 } from 'react-native';
 
-// import components needed
 import Header from './Header';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
 
-// import styles
 import { commonStyles } from '../styles';
 
 class Welcome extends Component {
-
+  // First screen (after login)
   constructor(props) {
     super(props)
   }
