@@ -1,8 +1,6 @@
 'use strict';
 import React, { Component } from 'react'
 import {
-  ActivityIndicator,
-  Platform,
   ScrollView,
   Text,
   TouchableHighlight,
