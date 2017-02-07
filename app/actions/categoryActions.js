@@ -1,9 +1,15 @@
-import * as types from './actionTypes';
+import {
+  FETCH_CATEGORIES,
+  FETCH_CATEGORIES_FULFILLED,
+  FETCH_CATEGORIES_REJECTED,
+  SEARCH_CATEGORY,
+  SET_CATEGORY
+} from './actionTypes';
 import config from '../config/config';
 
 export function searchCategory(categoryId, categoryName) {
   return {
-    type: types.SEARCH_CATEGORY,
+    type: SEARCH_CATEGORY,
     categoryId,
     categoryName
   };
@@ -11,22 +17,22 @@ export function searchCategory(categoryId, categoryName) {
 
 export function fetchCategories() {
   return function(dispatch) {
-    dispatch({type: types.FETCH_CATEGORIES});
+    dispatch({type: FETCH_CATEGORIES});
     let url = config.API_URL + '/categories';
     fetch(url)
       .then((response) => response.json())
       .then((responseJ) => {
-        dispatch({type: types.FETCH_CATEGORIES_FULFILLED, payload: responseJ})
+        dispatch({type: FETCH_CATEGORIES_FULFILLED, payload: responseJ})
       })
       .catch((err) => {
-        dispatch({type: types.FETCH_CATEGORIES_REJECTED, payload: err})
+        dispatch({type: FETCH_CATEGORIES_REJECTED, payload: err})
       })
   }
 };
 
 export function setCategory(name, id) {
   return {
-    type: types.SET_CATEGORY,
+    type: SET_CATEGORY,
     payload: {name, id}
   }
 }
