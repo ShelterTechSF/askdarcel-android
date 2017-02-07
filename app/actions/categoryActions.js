@@ -5,7 +5,7 @@ import {
   SEARCH_CATEGORY,
   SET_CATEGORY
 } from './actionTypes';
-import config from '../config/config';
+import { API_URL } from '../config';
 
 export function searchCategory(categoryId, categoryName) {
   return {
@@ -18,7 +18,7 @@ export function searchCategory(categoryId, categoryName) {
 export function fetchCategories() {
   return function(dispatch) {
     dispatch({type: FETCH_CATEGORIES});
-    let url = config.API_URL + '/categories';
+    let url = API_URL + '/categories';
     fetch(url)
       .then((response) => response.json())
       .then((responseJ) => {
@@ -26,13 +26,13 @@ export function fetchCategories() {
       })
       .catch((err) => {
         dispatch({type: FETCH_CATEGORIES_REJECTED, payload: err})
-      })
-  }
+      }
+  };
 };
 
 export function setCategory(name, id) {
   return {
     type: SET_CATEGORY,
     payload: {name, id}
-  }
-}
+  };
+};

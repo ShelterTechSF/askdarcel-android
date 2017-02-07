@@ -17,12 +17,12 @@ export function getUserLocation() {
       },
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-  }
-}
+  };
+};
 
 export function updateUserLocation(location) {
   return {
     type: UPDATE_USER_LOCATION,
     payload: location
-  }
-}
+  };
+};
