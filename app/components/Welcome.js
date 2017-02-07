@@ -15,7 +15,7 @@ import Categories from './Categories';
 // import styles
 import { commonStyles } from '../styles';
 
-class WelcomeScreen extends Component {
+class Welcome extends Component {
 
   constructor(props) {
     super(props)
@@ -32,4 +32,4 @@ class WelcomeScreen extends Component {
   }
 };
 
-export default WelcomeScreen;
+export default Welcome;

@@ -14,7 +14,6 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import Category from './Category';
-import ResourcesScreen from './ResourcesScreen';
 import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 
