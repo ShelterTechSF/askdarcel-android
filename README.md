@@ -28,6 +28,15 @@ $ git clone https://github.com/ShelterTechSF/askdarcel-app.git
 $ cd askdarcel-app
 $ npm install
 ```
+
+### Troubleshooting
+
+If you get an error running the debugger while trying to start android, try:
+
+```sh
+$ cd android/ && ./gradlew clean && cd .. && react-native run-android
+```
+
 [xcode]: <https://developer.apple.com/downloads/>
 [studio]: <https://developer.android.com/studio/intro/index.html/>
 [react-native]: <https://facebook.github.io/react-native/>
