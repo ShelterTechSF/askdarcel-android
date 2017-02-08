@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import Welcome from './components/Welcome';
