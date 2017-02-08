@@ -13,6 +13,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import ResourceItem from './ResourceItem';
+import Loading from './Loading';
 import { fetchResources, setResource } from '../actions/resourceActions';
 
 class ResourceList extends Component {
@@ -29,7 +30,11 @@ class ResourceList extends Component {
     Actions.resourceDetail();
   }
 
-  render() {
+  renderList() {
+    if (this.props.fetching) {
+      return <Loading size={'large'} />
+    }
+
     let resources = this.props.resources
     let resourceResults = resources.map((resource, i) =>  
       <TouchableHighlight onPress={this._onButtonPress.bind(this, resource, i)} key={i}>
@@ -48,6 +53,10 @@ class ResourceList extends Component {
         </ScrollView>
       </View>
     );
+  }
+
+  render() {
+    return this.renderList();
   }
 }
 

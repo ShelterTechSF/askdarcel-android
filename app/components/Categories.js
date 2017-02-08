@@ -13,6 +13,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import Category from './Category';
+import Loading from './Loading';
 import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 
@@ -29,7 +30,11 @@ class Categories extends Component {
     Actions.resources();
   }
 
-  render() {
+  renderCategories() {
+    if (this.props.fetching) {
+      return <Loading size={'large'} />;
+    } 
+
     let { categories } = this.props;
     let categoryList = categories.map((category) =>  
       <TouchableHighlight onPress={this._onButtonPress.bind(this, category.name, category.id)} key={category.id}>
@@ -46,6 +51,10 @@ class Categories extends Component {
         </ScrollView>
       </View>
     );
+  }
+
+  render() {
+    return this.renderCategories();
   }
 }
 
