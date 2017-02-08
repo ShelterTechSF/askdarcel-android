@@ -1,8 +1,7 @@
 'use strict';
+
 import React, { Component } from 'react'
 import {
-  ActivityIndicator,
-  Platform,
   ScrollView,
   Text,
   TouchableHighlight,
@@ -14,32 +13,28 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import Category from './Category';
-import ResourcesScreen from './ResourcesScreen';
 import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 
 class Categories extends Component {
-
+  // Categories list for the welcome screen
   componentWillMount() {
     this.props.fetchCategories();
   }
 
-  searchResources(categoryId) {
-    let idx = categoryId - 1;
+  _onButtonPress(category, id) { 
+    // Set the category in the state
+    this.props.setCategory(category, id);
+    // Navigate to the resources list
     Actions.resources();
-  }
-
-  _onButtonPress(category, idx) { 
-    this.props.setCategory(category, idx);
-    this.searchResources(idx);
   }
 
   render() {
     let { categories } = this.props;
-    let categoryList = categories.map((category, i) =>  
-      <TouchableHighlight onPress={this._onButtonPress.bind(this, category.name, category.id)} key={i}>
+    let categoryList = categories.map((category) =>  
+      <TouchableHighlight onPress={this._onButtonPress.bind(this, category.name, category.id)} key={category.id}>
         <View>
-          <Category category={category} idx={i}/>
+          <Category category={category}/>
         </View>
       </TouchableHighlight>
     )

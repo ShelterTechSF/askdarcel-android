@@ -1,3 +1,5 @@
+'use strict';
+
 import React, { Component } from 'react';
 import {
   ActivityIndicator
@@ -6,6 +8,8 @@ import {
 import { commonStyles } from '../styles';
 
 class Loading extends Component {
+  // A spinner to display when data is being fetched
+  
   render() {
     return (
       <ActivityIndicator

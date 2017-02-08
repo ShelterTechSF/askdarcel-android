@@ -7,7 +7,6 @@ import {
   View
 } from 'react-native';
 
-// import styles
 import { categoryStyles } from '../styles';
 
 class Category extends Component {

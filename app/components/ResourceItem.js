@@ -7,7 +7,6 @@ import {
   View
 } from 'react-native';
 
-// import styles
 import { resourceStyles } from '../styles';
 
 class ResourceItem extends Component {

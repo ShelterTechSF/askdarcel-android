@@ -1,8 +1,10 @@
+'use strict';
+
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import WelcomeScreen from './components/WelcomeScreen';
-import ResourcesScreen from './components/ResourcesScreen';
-import ResourceDetailScreen from './components/ResourceDetailScreen';
+import Welcome from './components/Welcome';
+import ResourceList from './components/ResourceList';
+import ResourceDetail from './components/ResourceDetail';
 
 const RouterComponent = () => {
   return (
@@ -10,10 +12,10 @@ const RouterComponent = () => {
       <Scene key={'main'} title={"Ask Darcel"} initial>
         <Scene 
           key={'welcome'} 
-          component={WelcomeScreen} 
+          component={Welcome} 
           title={"Welcome"} />
-        <Scene key={'resources'} component={ResourcesScreen} title={'Ask Darcel'} />
-        <Scene key={'resourceDetail'} component={ResourceDetailScreen} title={'Ask Darcel'} />
+        <Scene key={'resources'} component={ResourceList} title={'Ask Darcel'} />
+        <Scene key={'resourceDetail'} component={ResourceDetail} title={'Ask Darcel'} />
       </Scene>
     </Router>
   );
