@@ -26,7 +26,7 @@ export function fetchCategories() {
       })
       .catch((err) => {
         dispatch({type: FETCH_CATEGORIES_REJECTED, payload: err})
-      }
+      })
   };
 };
 

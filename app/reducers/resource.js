@@ -1,4 +1,9 @@
-import * as types from '../actions/actionTypes';
+import {
+  FETCH_RESOURCES,
+  FETCH_RESOURCES_FULFILLED,
+  FETCH_RESOURCES_REJECTED,
+  SET_RESOURCE
+} from '../actions/actionTypes';
 
 const initialState = {
   current: null,
@@ -11,12 +16,12 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
-    case types.FETCH_RESOURCES:
+    case FETCH_RESOURCES:
       return {...state, fetching: true}
-    case types.FETCH_RESOURCES_REJECTED: {
+    case FETCH_RESOURCES_REJECTED: {
       return {...state, fetching: false, error: action.payload}
     }
-    case types.FETCH_RESOURCES_FULFILLED: {
+    case FETCH_RESOURCES_FULFILLED: {
       return {
         ...state,
         fetching: false,
@@ -24,7 +29,7 @@ export default function reducer(state=initialState, action) {
         list: action.payload,
       }
     }
-    case types.SET_RESOURCE: {
+    case SET_RESOURCE: {
       return {
         ...state,
         idx: action.payload.idx,  

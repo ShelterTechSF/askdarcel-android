@@ -1,4 +1,8 @@
-import * as types from '../actions/actionTypes';
+import {
+  GET_USER_LOCATION,
+  GET_USER_LOCATION_FULFILLED,
+  GET_USER_LOCATION_ERROR
+} from '../actions/actionTypes';
 
 const initialState = {
   fetching: false,
@@ -8,13 +12,13 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
-    case types.GET_USER_LOCATION:
+    case GET_USER_LOCATION:
       return {...state, fetching: true}
-    case types.GET_USER_LOCATION_FULFILLED:
+    case GET_USER_LOCATION_FULFILLED:
       return {...state, location: action.payload, fetching: false}
-    case types.GET_USER_LOCATION_ERROR: 
+    case GET_USER_LOCATION_ERROR: 
       return {...state, error: action.payload, fetching: false}
     default:
       return state;
   }
-}
+};

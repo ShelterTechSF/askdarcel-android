@@ -1,4 +1,9 @@
-import * as types from '../actions/actionTypes';
+import {
+  FETCH_CATEGORIES,
+  FETCH_CATEGORIES_FULFILLED,
+  FETCH_CATEGORIES_REJECTED,
+  SET_CATEGORY
+} from '../actions/actionTypes';
 
 const initialState = {
   id: null,
@@ -11,9 +16,9 @@ const initialState = {
 
 export default function reducer(state=initialState, action) {
   switch(action.type) {
-    case types.FETCH_CATEGORIES:
+    case FETCH_CATEGORIES:
       return {...state, fetching: true}
-    case types.FETCH_CATEGORIES_FULFILLED: {
+    case FETCH_CATEGORIES_FULFILLED: {
       return {
         ...state,
         fetching: false,
@@ -21,10 +26,10 @@ export default function reducer(state=initialState, action) {
         list: action.payload.categories, 
       }
     }
-    case types.FETCH_CATEGORIES_REJECTED: {
+    case FETCH_CATEGORIES_REJECTED: {
       return {...state, fetching: false, error: action.payload}
     }
-    case types.SET_CATEGORY: {
+    case SET_CATEGORY: {
       return {...state, id: action.payload.id, name: action.payload.name}
     }
     default:
