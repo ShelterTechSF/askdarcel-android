@@ -1,25 +1,21 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   ActivityIndicator
 } from 'react-native';
 
 import { commonStyles } from '../styles';
 
-class Loading extends Component {
+const Loading = (props) => {
   // A spinner to display when data is being fetched
-  
-  render() {
-    return (
-      <ActivityIndicator
-        animating={this.props.isLoading}
-        color="white"
-        size="large"
-        style={commonStyles.spinner}
-      />
-    )
-  }
-}
+  let size = props.size || 'small';
+  return (
+    <ActivityIndicator
+      size={size}
+      style={commonStyles.spinner}
+    />
+  );
+};
 
 export default Loading;
