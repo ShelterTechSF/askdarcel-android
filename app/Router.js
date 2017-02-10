@@ -13,7 +13,7 @@ import ResourceDetail from './components/ResourceDetail';
 
 const RouterComponent = () => {
   return (
-    <Router sceneStyle={{ paddingTop: 65 }}>
+    <Router sceneStyle={{ paddingTop: 55 }}>
       <Scene key={'auth'} title={''} >
         <Scene key={'splash'} component={Splash} title={'Ask Darcel'} />
         <Scene key={'login'} component={Login} title={'Ask Darcel'} />
@@ -21,7 +21,7 @@ const RouterComponent = () => {
         <Scene key={'name'} component={SignupName} title={'Ask Darcel'} />
         <Scene key={'avatar'} component={SignupAvatar} title={'Ask Darcel'} />
       </Scene>
-      <Scene key={'main'} title={"Ask Darcel"} initial>
+      <Scene key={'main'} title={"Ask Darcel"}>
         <Scene 
           key={'welcome'} 
           component={Welcome} 
