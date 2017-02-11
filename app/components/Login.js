@@ -10,12 +10,12 @@ class Login extends Component {
     return (
       <View>
         <Input 
-          label={'email'}
+          label={'Email'}
           placeholder={'name@example.com'}
         />
         <Input
           secure 
-          label={'password'}
+          label={'Password'}
           placeholder={'password'}
         />
         <Button onPress={() => Actions.main()}>
