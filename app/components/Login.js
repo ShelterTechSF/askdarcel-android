@@ -3,12 +3,21 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Button } from './shared';
+import { Button, Input } from './shared';
 
 class Login extends Component {
   render() {
     return (
       <View>
+        <Input 
+          label={'email'}
+          placeholder={'name@example.com'}
+        />
+        <Input
+          secure 
+          label={'password'}
+          placeholder={'password'}
+        />
         <Button onPress={() => Actions.main()}>
           Login
         </Button>
