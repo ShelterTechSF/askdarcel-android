@@ -3,11 +3,9 @@ import { Text, TouchableOpacity } from 'react-native';
 import { buttonStyles } from '../../styles';
 
 const Button = ({ onPress, children, style }) => {
-  const { button, text } = buttonStyles;
-  
   return (
-    <TouchableOpacity onPress={onPress} style={[button, style]}>
-      <Text style={text}>
+    <TouchableOpacity onPress={onPress} style={[buttonStyles.button, style]}>
+      <Text style={buttonStyles.text}>
         {children}
       </Text>
     </TouchableOpacity>

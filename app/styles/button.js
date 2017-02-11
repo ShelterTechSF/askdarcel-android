@@ -8,7 +8,6 @@ const buttonStyles = {
     paddingBottom: 10
   },
   button: {
-    flex: 1,
     alignSelf: 'stretch',
     backgroundColor: '#fff',
     borderRadius: 5,
