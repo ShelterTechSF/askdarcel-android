@@ -2,7 +2,9 @@ import { StyleSheet} from 'react-native';
 
 const resourceStyles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   listItem: {
     fontSize: 20,
