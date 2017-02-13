@@ -11,13 +11,17 @@ const resourceStyles = StyleSheet.create({
     padding: 5,
     backgroundColor: '#fff',
     justifyContent: 'flex-start',
-    flexDirection: 'row',
+    flexDirection: 'column',
     borderColor: '#ddd',
     position: 'relative'
   },
   name: {
     fontSize: 18,
     paddingLeft: 5,
+  },
+  info: {
+    fontSize: 16,
+    alignSelf: 'center',
   },
   resourceDetail: {
     flex: 1,
