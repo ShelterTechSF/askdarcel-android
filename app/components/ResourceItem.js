@@ -1,24 +1,25 @@
 'use strict';
 
-import React, { Component } from 'react'
+import React from 'react'
 import {
   Image,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 
 import { resourceStyles } from '../styles';
 
-class ResourceItem extends Component {
+const ResourceItem = ({resource, onPress}) => {
   // A single resource for the resources list
   
-  render() {
-    return (
+  return (
+    <TouchableHighlight onPress={onPress}>
       <Text style={resourceStyles.listItem}>
         {this.props.resource.name}
       </Text>
-    );
-  }
+    </TouchableHighlight>
+  );
 }
 
 export default ResourceItem;

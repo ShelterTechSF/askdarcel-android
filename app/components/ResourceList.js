@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react'
 import {
-  ScrollView,
+  ListView,
   Text,
   TouchableHighlight,
   View
@@ -18,45 +18,63 @@ import { fetchResources, setResource } from '../actions/resourceActions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
+  constructor(props) {
+    super(props)
+    this._onButtonPress = this._onButtonPress.bind(this);
+    const ds = new ListView.DataSource({ 
+      rowHasChanged: (r1, r2) => r1 !== r2 
+    });
+
+    this.state = {
+      dataSource : ds.cloneWithRows(this.props.resources)
+    }
+  }
   
   componentWillMount() {
-    let category = this.props.categoryName;
     let categoryId = this.props.categoryId;
-    this.props.fetchResources(categoryId);
+    this.props.fetchResources(categoryId)
   }
 
-  _onButtonPress(resource, idx) { 
-    this.props.setResource(resource, idx);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.resources) {
+      const ds = new ListView.DataSource({ 
+        rowHasChanged: (r1, r2) => r1 !== r2 
+      });
+      this.setState({
+        dataSource : ds.cloneWithRows(nextProps.resources)
+      });
+    }
+  }
+
+  _onButtonPress(resource) {  
+    this.props.setResource(resource);
     Actions.resourceDetail();
   }
 
-  renderList() {
-    if (this.props.fetching) {
-      return <Loading size={'large'} />
-    }
-
-    let resources = this.props.resources
-    let resourceResults = resources.map((resource, i) =>  
-      <TouchableHighlight onPress={this._onButtonPress.bind(this, resource, i)} key={i}>
-        <View>
-          <ResourceItem resource={resource} idx={i}/>
-        </View>
-      </TouchableHighlight>
-    )
+  renderRow(resource) {
     return (
-      <View>
-        <Text style={commonStyles.title}>
-          Found {resources.length} results for {this.props.categoryName}
-        </Text>
-        <ScrollView>
-          {resourceResults}
-        </ScrollView>
-      </View>
+      <TouchableHighlight onPress={this._onButtonPress.bind(this, resource)} key={resource.id}>
+        <Text>{resource.name}</Text>
+      </TouchableHighlight>
     );
   }
 
   render() {
-    return this.renderList();
+    if (this.props.fetching) {
+      return <Loading size={'large'} />;
+    } 
+
+    return (
+      <View>
+        <Text style={commonStyles.title}>
+          Found {this.props.resources.length} results for {this.props.categoryName}
+        </Text>
+        <ListView 
+          dataSource={this.state.dataSource}
+          renderRow={this.renderRow.bind(this)}
+        />
+      </View>
+    );
   }
 }
 

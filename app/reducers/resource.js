@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   current: null,
-  idx: null,
   list: [],
   fetching: false,
   receivedAt: null,
@@ -31,9 +30,8 @@ export default function reducer(state=initialState, action) {
     }
     case SET_RESOURCE: {
       return {
-        ...state,
-        idx: action.payload.idx,  
-        current: action.payload.resource
+        ...state,  
+        current: action.payload
       }
     }
     default:

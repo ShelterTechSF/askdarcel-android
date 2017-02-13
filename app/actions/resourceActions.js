@@ -20,9 +20,9 @@ export function fetchResources(categoryId) {
   };
 };
 
-export function setResource(resource, idx) {
+export function setResource(resource) {
   return {
     type: SET_RESOURCE,
-    payload: {resource, idx}
+    payload: resource
   };
 };
