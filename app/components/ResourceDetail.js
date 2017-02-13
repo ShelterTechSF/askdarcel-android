@@ -49,7 +49,6 @@ const mapStateToProps = state => {
   return {
     categoryId: state.category.id,
     categoryName: state.category.name,
-    resource: state.resource.current
   };
 };
 

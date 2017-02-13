@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import ResourceItem from './ResourceItem';
@@ -18,45 +17,30 @@ import { fetchResources, setResource } from '../actions/resourceActions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
-  constructor(props) {
-    super(props)
-    this._onButtonPress = this._onButtonPress.bind(this);
-    const ds = new ListView.DataSource({ 
-      rowHasChanged: (r1, r2) => r1 !== r2 
-    });
 
-    this.state = {
-      dataSource : ds.cloneWithRows(this.props.resources)
-    }
-  }
-  
   componentWillMount() {
     let categoryId = this.props.categoryId;
-    this.props.fetchResources(categoryId)
+    this.props.fetchResources(categoryId);
+
+    this.createDataSource(this.props.resources);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.resources) {
-      const ds = new ListView.DataSource({ 
-        rowHasChanged: (r1, r2) => r1 !== r2 
-      });
-      this.setState({
-        dataSource : ds.cloneWithRows(nextProps.resources)
-      });
+      this.createDataSource(nextProps.resources);
     }
   }
 
-  _onButtonPress(resource) {  
-    this.props.setResource(resource);
-    Actions.resourceDetail();
+  createDataSource(resources) {
+    const ds = new ListView.DataSource({ 
+      rowHasChanged: (r1, r2) => r1 !== r2 
+    });
+
+    this.dataSource = ds.cloneWithRows(resources);
   }
 
   renderRow(resource) {
-    return (
-      <TouchableHighlight onPress={this._onButtonPress.bind(this, resource)} key={resource.id}>
-        <Text>{resource.name}</Text>
-      </TouchableHighlight>
-    );
+    return <ResourceItem resource={resource} />;
   }
 
   render() {
@@ -70,8 +54,8 @@ class ResourceList extends Component {
           Found {this.props.resources.length} results for {this.props.categoryName}
         </Text>
         <ListView 
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this)}
+          dataSource={this.dataSource}
+          renderRow={this.renderRow}
         />
       </View>
     );

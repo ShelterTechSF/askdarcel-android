@@ -1,25 +1,27 @@
 'use strict';
 
-import React from 'react'
+import React from 'react';
 import {
   Image,
   Text,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
   View
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import { resourceStyles } from '../styles';
 
-const ResourceItem = ({resource, onPress}) => {
+const ResourceItem = ({ resource }) => {
   // A single resource for the resources list
-  
-  return (
-    <TouchableHighlight onPress={onPress}>
-      <Text style={resourceStyles.listItem}>
-        {this.props.resource.name}
-      </Text>
-    </TouchableHighlight>
-  );
+    return (
+      <TouchableWithoutFeedback
+        onPress={() => Actions.resourceDetail({ resource })}
+      >
+        <View style={resourceStyles.listItem}>
+          <Text style={resourceStyles.name}>{resource.name}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
 }
 
 export default ResourceItem;
