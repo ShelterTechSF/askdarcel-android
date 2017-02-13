@@ -1,5 +1,3 @@
-'use strict';
-
 import React, { Component } from 'react'
 import {
   ListView,
@@ -49,7 +47,7 @@ class ResourceList extends Component {
     } 
 
     return (
-      <View>
+      <View style={{flex: 1}}>
         <Text style={commonStyles.title}>
           Found {this.props.resources.length} results for {this.props.categoryName}
         </Text>
