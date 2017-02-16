@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import Category from './Category';
-import Loading from './Loading';
+import { Loading } from './shared';
 import { fetchCategories, setCategory } from '../actions/categoryActions';
 
 

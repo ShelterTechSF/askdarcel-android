@@ -5,8 +5,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import Loading from './Loading';
-import { MapComponent } from './shared';
+import { Loading, MapComponent } from './shared';
 import { mapStyles, resourceStyles } from '../styles';
 
 class ResourceDetail extends Component {

@@ -11,8 +11,8 @@ import MapView from 'react-native-maps';
 
 import { commonStyles, mapStyles } from '../styles';
 import ResourceItem from './ResourceItem';
-import Loading from './Loading';
-import { fetchResources } from '../actions/resourceActions';
+import { Loading } from './shared';
+import { fetchResources } from '../actions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view

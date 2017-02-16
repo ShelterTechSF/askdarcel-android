@@ -5,7 +5,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 
-import { commonStyles } from '../styles';
+import { commonStyles } from '../../styles';
 
 const Loading = (props) => {
   // A spinner to display when data is being fetched
@@ -18,4 +18,4 @@ const Loading = (props) => {
   );
 };
 
-export default Loading;
+export { Loading };
