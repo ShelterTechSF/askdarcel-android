@@ -49,18 +49,6 @@ class ResourceList extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <View style={mapStyles.container}>
-          <MapView 
-            style={mapStyles.map}
-            initialRegion={{
-              provider: "google", 
-              latitude,
-              longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          />
-        </View>
         <ListView 
           dataSource={this.dataSource}
           renderRow={this.renderRow}

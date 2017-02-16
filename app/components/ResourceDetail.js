@@ -3,10 +3,10 @@ import {
   Text,
   View
 } from 'react-native';
-import MapView from 'react-native-maps';
 
 import { connect } from 'react-redux';
 import Loading from './Loading';
+import { MapComponent } from './shared';
 import { mapStyles, resourceStyles } from '../styles';
 
 class ResourceDetail extends Component {
@@ -17,22 +17,18 @@ class ResourceDetail extends Component {
     let { latitude, longitude } = resource.address;
     latitude = Number.parseFloat(latitude);
     longitude = Number.parseFloat(longitude);
+    let initialRegion = {
+      provider: "google",
+      latitude,
+      longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }
+    let markers = [{coordinates: {latitude, longitude}, title: resource.name}];
+
     return (
       <View style={resourceStyles.container}>
-        <View style={mapStyles.container}>
-          <MapView
-            style={mapStyles.map}
-            initialRegion={{
-              provider: "google", 
-              latitude,
-              longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          >
-            <MapView.Marker coordinate={{latitude, longitude}} />
-          </MapView>
-        </View>
+        <MapComponent initialRegion={initialRegion} markers={markers} />
         <View style={resourceStyles.container}>
           <Text style={resourceStyles.name}>
             Details for {resource.name}
