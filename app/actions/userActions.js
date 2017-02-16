@@ -10,7 +10,12 @@ export function getUserLocation() {
     dispatch({type: GET_USER_LOCATION});
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        dispatch({type: GET_USER_LOCATION_FULFILLED, payload: position});
+        const loc = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          time: position.timestamp
+        }
+        dispatch({type: GET_USER_LOCATION_FULFILLED, payload: loc});
       },
       (error) =>{
         dispatch({type: GET_USER_LOCATION_ERROR, payload: error});

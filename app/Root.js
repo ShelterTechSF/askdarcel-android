@@ -1,19 +1,26 @@
 'use strict';
 
-import React from 'react';
+import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import Router from './Router';
 import store from './config/store';
+import { getUserLocation } from './actions';
 
-const RootComponent = () => {
-  return (
-    <Provider store={store}>
-      <View style={{ flex: 1 }}>
-        <Router />
-      </View>
-    </Provider>
-  );
+class RootComponent extends Component {
+  componentWillMount() {
+    store.dispatch(getUserLocation());
+  }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <View style={{ flex: 1 }}>
+          <Router />
+        </View>
+      </Provider>
+    );
+  }
 };
 
 export default RootComponent;

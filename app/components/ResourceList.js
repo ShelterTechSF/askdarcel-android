@@ -7,18 +7,18 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
+import MapView from 'react-native-maps';
 
-import { commonStyles } from '../styles';
+import { commonStyles, mapStyles } from '../styles';
 import ResourceItem from './ResourceItem';
 import Loading from './Loading';
-import { fetchResources, setResource } from '../actions/resourceActions';
+import { fetchResources } from '../actions/resourceActions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
 
   componentWillMount() {
-    let categoryId = this.props.categoryId;
-    this.props.fetchResources(categoryId);
+    this.props.fetchResources(this.props.categoryId);
 
     this.createDataSource(this.props.resources);
   }
@@ -45,12 +45,22 @@ class ResourceList extends Component {
     if (this.props.fetching) {
       return <Loading size={'large'} />;
     } 
+    let { latitude, longitude } = this.props.location;
 
     return (
       <View style={{flex: 1}}>
-        <Text style={commonStyles.title}>
-          Found {this.props.resources.length} results for {this.props.categoryName}
-        </Text>
+        <View style={mapStyles.container}>
+          <MapView 
+            style={mapStyles.map}
+            initialRegion={{
+              provider: "google", 
+              latitude,
+              longitude,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          />
+        </View>
         <ListView 
           dataSource={this.dataSource}
           renderRow={this.renderRow}
@@ -68,7 +78,8 @@ const mapStateToProps = state => {
     categoryName: state.category.name,
     error: state.resource.error,
     resources: state.resource.list,
+    location: state.user.location
   };
 };
 
-export default connect(mapStateToProps, { fetchResources, setResource })(ResourceList);
+export default connect(mapStateToProps, { fetchResources })(ResourceList);
