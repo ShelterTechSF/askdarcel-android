@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 
-import { getUserLocation } from '../actions';
 import Header from './Header';
 import SearchBar from './SearchBar';
 import Categories from './Categories';
@@ -19,7 +18,6 @@ class Welcome extends Component {
   // First screen (after login)
   constructor(props) {
     super(props)
-    this.props.getUserLocation();
   }
 
   render() {
@@ -33,4 +31,4 @@ class Welcome extends Component {
   }
 };
 
-export default connect(null, { getUserLocation })(Welcome);
+export default Welcome;
