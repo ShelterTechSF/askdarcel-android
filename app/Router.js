@@ -27,7 +27,7 @@ const RouterComponent = () => {
           component={Welcome} 
           title={"Welcome"} />
         <Scene key={'resources'} component={ResourceList} title={'Ask Darcel'} />
-        <Scene key={'resourceDetail'} component={ResourceDetail} title={'Ask Darcel'} />
+        <Scene key={'resourceDetail'} component={ResourceDetail} title={'Ask Darcel'} type={'replace'} />
       </Scene>
     </Router>
   );
