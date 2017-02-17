@@ -25,8 +25,11 @@ const resourceStyles = StyleSheet.create({
   },
   resourceDetail: {
     flex: 1,
-    fontSize: 20,
-    marginLeft: 15,
+    justifyContent: 'flex-start',
+    padding: 5,
+    flexDirection: 'column',
+    borderColor: '#ddd',
+    position: 'relative'
   },
 });
 

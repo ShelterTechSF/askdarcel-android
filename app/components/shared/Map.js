@@ -16,7 +16,7 @@ const MapComponent = ({ initialRegion, markers, style }) => {
   markers = markers || [];
   return (
     <View style={mapStyles.container}>
-      <MapView style={[mapStyles.map, style]} initialRegion={initialRegion}>
+      <MapView style={[mapStyles.map, style]} initialRegion={initialRegion} liteMode>
         {markers.map(marker => (
           <MapView.Marker 
             key={marker.coordinates.latitude}

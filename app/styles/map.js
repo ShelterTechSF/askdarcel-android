@@ -6,14 +6,11 @@ const mapSize = width;
 const mapStyles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
   map: {
-    height: mapSize,
-    width: mapSize,
-    position: 'absolute',
-    top: 0,
+    ...StyleSheet.absoluteFillObject
   },
 });
 

@@ -29,6 +29,11 @@ const commonStyles = StyleSheet.create({
     height: 30,
     marginRight: 16,
   },
+  overline: {
+    borderTopColor: '#bbb', 
+    borderTopWidth: StyleSheet.hairlineWidth,
+    height: 20
+  }
 });
 
 export { commonStyles };
