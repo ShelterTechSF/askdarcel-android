@@ -1,25 +1,19 @@
-import { StyleSheet} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+const mapSize = width;
 
 const mapStyles = StyleSheet.create({
   container: {
-    position: 'absolute',
     flex: 1,
-    height: 200,
-    width: null,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
   map: {
+    height: mapSize,
+    width: mapSize,
     position: 'absolute',
-    flex: 1,
     top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
 });
 

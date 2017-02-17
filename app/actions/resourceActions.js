@@ -8,7 +8,6 @@ import { API_URL } from '../config';
 
 export function fetchResources(categoryId) {
   return function(dispatch) {
-    console.warn("Fetching the resources for " + categoryId);
     dispatch({type: FETCH_RESOURCES});
     fetch(API_URL + "/resources?category_id="+categoryId)
       .then((response) => response.json())

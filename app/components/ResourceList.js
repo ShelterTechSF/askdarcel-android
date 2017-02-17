@@ -9,9 +9,9 @@ import {
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
 
-import { commonStyles, mapStyles } from '../styles';
+import { commonStyles, mapStyles, resourceStyles } from '../styles';
 import ResourceItem from './ResourceItem';
-import { Loading } from './shared';
+import { Loading, MapComponent } from './shared';
 import { fetchResources } from '../actions';
 
 class ResourceList extends Component {
@@ -46,10 +46,18 @@ class ResourceList extends Component {
       return <Loading size={'large'} />;
     } 
     let { latitude, longitude } = this.props.location;
+    let initialRegion = {
+      provider: "google",
+      latitude,
+      longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    };
 
     return (
-      <View style={{flex: 1}}>
-        <ListView 
+      <View style={resourceStyles.container}>
+        <MapComponent initialRegion={initialRegion} />
+        <ListView
           dataSource={this.dataSource}
           renderRow={this.renderRow}
         />

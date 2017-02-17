@@ -6,7 +6,7 @@ import {
 
 import { connect } from 'react-redux';
 import { Loading, MapComponent } from './shared';
-import { mapStyles, resourceStyles } from '../styles';
+import { resourceStyles } from '../styles';
 
 class ResourceDetail extends Component {
   // Single resources for detail view
@@ -28,11 +28,9 @@ class ResourceDetail extends Component {
     return (
       <View style={resourceStyles.container}>
         <MapComponent initialRegion={initialRegion} markers={markers} />
-        <View style={resourceStyles.container}>
-          <Text style={resourceStyles.name}>
-            Details for {resource.name}
-          </Text>
-        </View>
+        <Text style={resourceStyles.resourceDetail}>
+          Details for {resource.name}
+        </Text>
       </View>
     );
   }
