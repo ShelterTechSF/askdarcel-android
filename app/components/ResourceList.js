@@ -16,6 +16,12 @@ import { fetchResources } from '../actions';
 
 class ResourceList extends Component {
   // Single resources for list in Categories view
+  constructor(props) {
+    super(props)
+    this.state = {
+      markers: []
+    }
+  }
 
   componentWillMount() {
     this.props.fetchResources(this.props.categoryId);
@@ -33,12 +39,19 @@ class ResourceList extends Component {
     const ds = new ListView.DataSource({ 
       rowHasChanged: (r1, r2) => r1 !== r2 
     });
-
+    
     this.dataSource = ds.cloneWithRows(resources);
   }
 
   renderRow(resource) {
     return <ResourceItem resource={resource} />;
+  }
+
+  onChangeVisibleRows(visible) {
+    console.warn("changing rows");
+    console.log("changing rows");
+    console.log(visible); 
+    // Set visible as array of markers on the state
   }
 
   render() {
@@ -56,10 +69,11 @@ class ResourceList extends Component {
 
     return (
       <View style={resourceStyles.container}>
-        <MapComponent initialRegion={initialRegion} />
+        <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
         <ListView
           dataSource={this.dataSource}
           renderRow={this.renderRow}
+          onChangeVisibleRows={this.onChangeVisibleRows}
         />
       </View>
     );
