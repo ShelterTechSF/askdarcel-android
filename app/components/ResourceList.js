@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import {
-  ListView,
   Text,
-  TouchableHighlight,
   View
 } from 'react-native';
+import FlatList from 'react-native/Libraries/Experimental/FlatList';
 
 import { connect } from 'react-redux';
 import MapView from 'react-native-maps';
@@ -25,26 +24,14 @@ class ResourceList extends Component {
 
   componentWillMount() {
     this.props.fetchResources(this.props.categoryId);
-
-    this.createDataSource(this.props.resources);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.resources) {
-      this.createDataSource(nextProps.resources);
-    }
-  }
+  renderItemComponent({resource, index}) {
+    /** Don't get layout.height, just get layout. It already contains {height, x, y, width} so we don't need to compute */
+    return (
+      <ResourceItem resource={resource} />
+    );
 
-  createDataSource(resources) {
-    const ds = new ListView.DataSource({ 
-      rowHasChanged: (r1, r2) => r1 !== r2 
-    });
-    
-    this.dataSource = ds.cloneWithRows(resources);
-  }
-
-  renderRow(resource) {
-    return <ResourceItem resource={resource} />;
   }
 
   onChangeVisibleRows(visible) {
@@ -70,10 +57,9 @@ class ResourceList extends Component {
     return (
       <View style={resourceStyles.container}>
         <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
-        <ListView
-          dataSource={this.dataSource}
-          renderRow={this.renderRow}
-          onChangeVisibleRows={this.onChangeVisibleRows}
+        <FlatList
+          data={this.props.resources}
+          itemComponent={this.renderItemComponent} 
         />
       </View>
     );
