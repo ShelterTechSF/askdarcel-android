@@ -17,13 +17,23 @@ class ResourceList extends Component {
     this.props.fetchResources(this.props.categoryId);
   }
 
+  onViewableItemsChanged({ viewableItems, changed }) {
+    
+  }
+
   renderItemComponent({item, index}) {
     return <ResourceItem resource={item} />;
   }
 
   render() {
+    // Returns empty FlatList to stop onViewableItemsChanged from crashing the app when no list is rendered
     if (this.props.fetching) {
-      return <Loading size={'large'} />;
+      return (
+        <View>
+          <Loading size={'large'} />
+          <FlatList data={[]} ItemComponent={this.renderItemComponent} />
+        </View>
+      );
     }
 
     let { latitude, longitude } = this.props.location;
@@ -37,8 +47,11 @@ class ResourceList extends Component {
 
     return (
       <View>
-        <MapComponent initialRegion={initialRegion} />
-        <FlatList data={this.props.resources} ItemComponent={this.renderItemComponent}  />
+        <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
+        <FlatList 
+          data={this.props.resources} 
+          ItemComponent={this.renderItemComponent}
+          onViewableItemsChanged={this.onViewableItemsChanged}  />
       </View>
     );
   }
