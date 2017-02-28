@@ -1,50 +1,31 @@
-import React, { Component } from 'react'
-import {
-  Text,
-  View
-} from 'react-native';
-import FlatList from 'react-native/Libraries/Experimental/FlatList';
-
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
-import MapView from 'react-native-maps';
-
-import { commonStyles, mapStyles, resourceStyles } from '../styles';
+import FlatList from 'react-native/Libraries/Experimental/FlatList';
 import ResourceItem from './ResourceItem';
+import MapView from 'react-native-maps';
 import { Loading, MapComponent } from './shared';
 import { fetchResources } from '../actions';
 
 class ResourceList extends Component {
-  // Single resources for list in Categories view
-  constructor(props) {
-    super(props)
-    this.state = {
-      markers: []
-    }
+  // Resources for list in search results
+  state = {
+    markers: []
   }
 
   componentWillMount() {
     this.props.fetchResources(this.props.categoryId);
   }
 
-  renderItemComponent({resource, index}) {
-    /** Don't get layout.height, just get layout. It already contains {height, x, y, width} so we don't need to compute */
-    return (
-      <ResourceItem resource={resource} />
-    );
-
-  }
-
-  onChangeVisibleRows(visible) {
-    console.warn("changing rows");
-    console.log("changing rows");
-    console.log(visible); 
-    // Set visible as array of markers on the state
+  renderItemComponent({item, index}) {
+    return <ResourceItem resource={item} />;
   }
 
   render() {
     if (this.props.fetching) {
       return <Loading size={'large'} />;
-    } 
+    }
+
     let { latitude, longitude } = this.props.location;
     let initialRegion = {
       provider: "google",
@@ -55,12 +36,9 @@ class ResourceList extends Component {
     };
 
     return (
-      <View style={resourceStyles.container}>
-        <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
-        <FlatList
-          data={this.props.resources}
-          itemComponent={this.renderItemComponent} 
-        />
+      <View>
+        <MapComponent initialRegion={initialRegion} />
+        <FlatList data={this.props.resources} ItemComponent={this.renderItemComponent}  />
       </View>
     );
   }
@@ -68,7 +46,6 @@ class ResourceList extends Component {
 
 const mapStateToProps = state => {
   return {
-    fetched: state.resource.fetched,
     fetching: state.resource.fetching,
     categoryId: state.category.id,
     categoryName: state.category.name,
