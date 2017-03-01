@@ -1,24 +1,26 @@
-'use strict';
-
-import React, { Component } from 'react'
+import React from 'react';
 import {
   Image,
   Text,
+  TouchableWithoutFeedback,
   View
 } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 
 import { resourceStyles } from '../styles';
 
-class ResourceItem extends Component {
+const ResourceItem = ({ resource }) => {
   // A single resource for the resources list
-  
-  render() {
     return (
-      <Text style={resourceStyles.listItem}>
-        {this.props.resource.name}
-      </Text>
+      <TouchableWithoutFeedback
+        onPress={() => Actions.resourceDetail({ resource })}
+      >
+        <View style={resourceStyles.listItem}>
+          <Text style={resourceStyles.name}>{resource.name}</Text>
+          <Text style={resourceStyles.info}>{resource.long_description}</Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
-  }
 }
 
 export default ResourceItem;

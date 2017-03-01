@@ -1,39 +1,37 @@
-'use strict';
-
 import React, { Component } from 'react'
 import {
   Text,
   View
 } from 'react-native';
-import MapView from 'react-native-maps';
 
 import { connect } from 'react-redux';
-import Loading from './Loading';
-import { mapStyles, resourceStyles } from '../styles';
+import { Loading, MapComponent } from './shared';
+import { resourceStyles, commonStyles } from '../styles';
 
 class ResourceDetail extends Component {
   // Single resources for detail view
 
   render() {
     let resource = this.props.resource;
+    let { latitude, longitude } = resource.address;
+    let initialRegion = {
+      provider: "google",
+      latitude,
+      longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }
+    let markers = [{coordinates: {latitude, longitude}, title: resource.name}];
+
     return (
-      <View>
-        <View style={mapStyles.container}>
-          <MapView
-            style={mapStyles.map}
-            initialRegion={{
-              provider: "google", 
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          />
-        </View>
-        <View style={resourceStyles.container}>
-          <Text style={resourceStyles.name}>
-            Details for {resource.name}
-          </Text>
+      <View style={resourceStyles.container}>
+        <MapComponent initialRegion={initialRegion} markers={markers} />
+        <View style={resourceStyles.resourceDetail}>
+          <View style={commonStyles.overline}>
+            <Text style={resourceStyles.name}>
+              Details for {resource.name}
+            </Text>
+          </View>
         </View>
       </View>
     );
@@ -44,7 +42,6 @@ const mapStateToProps = state => {
   return {
     categoryId: state.category.id,
     categoryName: state.category.name,
-    resource: state.resource.current
   };
 };
 

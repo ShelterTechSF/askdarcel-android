@@ -15,7 +15,7 @@ export default function reducer(state=initialState, action) {
     case GET_USER_LOCATION:
       return {...state, fetching: true}
     case GET_USER_LOCATION_FULFILLED:
-      return {...state, location: action.payload, fetching: false}
+      return {...initialState, location: action.payload}
     case GET_USER_LOCATION_ERROR: 
       return {...state, error: action.payload, fetching: false}
     default:

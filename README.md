@@ -29,9 +29,17 @@ $ cd askdarcel-app
 $ npm install
 ```
 
+You also need some experimental components that aren't packed with React Native by default. To add them to your library, run this in your terminal:
+
+```sh
+$ for file in 'FlatList' 'MetroListView' 'VirtualizedList' 'VirtualizeUtils' 'ViewabilityHelper'; \
+    do curl https://raw.githubusercontent.com/facebook/react-native/master/Libraries/Experimental/${file}.js > node_modules/react-native/Libraries/Experimental/${file}.js; \
+    done
+```
+
 ### Troubleshooting
 
-If you get an error running the debugger while trying to start android, try:
+If you get an error running the debugger (or any mysterious top-level exception) try:
 
 ```sh
 $ cd android/ && ./gradlew clean && cd .. && react-native run-android

@@ -6,6 +6,7 @@ import {
   TextInput,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import Header from './Header';
 import SearchBar from './SearchBar';
