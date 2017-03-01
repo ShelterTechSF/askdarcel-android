@@ -16,8 +16,8 @@ const ResourceItem = ({ resource }) => {
         onPress={() => Actions.resourceDetail({ resource })}
       >
         <View style={resourceStyles.listItem}>
-          <Text style={resourceStyles.name}>{resource.long_description}</Text>
-          <Text style={resourceStyles.info}>{resource.name}</Text>
+          <Text style={resourceStyles.name}>{resource.name}</Text>
+          <Text style={resourceStyles.info}>{resource.long_description}</Text>
         </View>
       </TouchableWithoutFeedback>
     );

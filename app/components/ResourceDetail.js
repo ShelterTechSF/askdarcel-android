@@ -14,8 +14,6 @@ class ResourceDetail extends Component {
   render() {
     let resource = this.props.resource;
     let { latitude, longitude } = resource.address;
-    latitude = Number.parseFloat(latitude);
-    longitude = Number.parseFloat(longitude);
     let initialRegion = {
       provider: "google",
       latitude,

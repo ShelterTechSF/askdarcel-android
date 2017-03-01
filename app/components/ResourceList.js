@@ -15,10 +15,37 @@ class ResourceList extends Component {
 
   componentWillMount() {
     this.props.fetchResources(this.props.categoryId);
+    this.generateMarkers([], this.props.location);
+  }
+
+  generateMarkers(viewableItems = [], userLoc) {
+    let markers = viewableItems.map(viewable => {
+      if (!viewable.item.address) {
+        return null;
+      }
+      let coordinates = {
+        longitude: viewable.item.address.longitude, 
+        latitude: viewable.item.address.latitude
+      };
+      return {title: viewable.item.name, coordinates }
+    });
+
+    markers.filter(val => {return val !== null;} );
+
+    if (userLoc) {
+      markers = markers.concat([{
+        title: 'You are here', 
+        coordinates: {longitude: userLoc.longitude, latitude: userLoc.latitude}
+      }]);
+    }
+
+    console.log(markers);
+
+    this.setState({ markers });
   }
 
   onViewableItemsChanged({ viewableItems, changed }) {
-    
+    this.generateMarkers(viewableItems, this.props.location);
   }
 
   renderItemComponent({item, index}) {
@@ -51,7 +78,7 @@ class ResourceList extends Component {
         <FlatList 
           data={this.props.resources} 
           ItemComponent={this.renderItemComponent}
-          onViewableItemsChanged={this.onViewableItemsChanged}  />
+          onViewableItemsChanged={this.onViewableItemsChanged.bind(this)}  />
       </View>
     );
   }

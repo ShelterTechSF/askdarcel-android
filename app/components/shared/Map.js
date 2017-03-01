@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Dimensions
@@ -7,26 +7,40 @@ import {
 import MapView from 'react-native-maps';
 import { mapStyles } from '../../styles';
 
-const MapComponent = ({ initialRegion, markers, style }) => {
-  const HORIZONTAL_PADDING = 12;
-  const VERTICAL_PADDING = 6;
-  const { width } = Dimensions.get('window');
-  const mapSize = width - (HORIZONTAL_PADDING * 2);
+class MapComponent extends Component { 
+  state = {
+    markers: this.props.markers || []
+  }
 
-  markers = markers || [];
-  return (
-    <View style={mapStyles.container}>
-      <MapView style={[mapStyles.map, style]} initialRegion={initialRegion} liteMode>
-        {markers.map(marker => (
-          <MapView.Marker 
-            key={marker.coordinates.latitude}
-            coordinate={marker.coordinates}
-            title={marker.title}
-          />
-        ))}
-      </MapView>
-    </View>
-  );
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.markers) {
+      this.setState({ markers: nextProps.markers });
+    }
+  }
+  
+  render() {
+    let { initialRegion, style } = this.props;
+    initialRegion.latitude = Number.parseFloat(initialRegion.latitude);
+    initialRegion.longitude = Number.parseFloat(initialRegion.longitude);
+    return (
+      <View style={mapStyles.container}>
+        <MapView style={[mapStyles.map, style]} initialRegion={initialRegion} liteMode>
+          {this.state.markers.map(marker => {
+            let coordinate = {
+              latitude: Number.parseFloat(marker.coordinates.latitude),
+              longitude: Number.parseFloat(marker.coordinates.longitude)
+            };
+
+            return (<MapView.Marker 
+              key={marker.coordinates.latitude}
+              coordinate={coordinate}
+              title={marker.title}
+            />)
+          })}
+        </MapView>
+      </View>
+    );
+  }
 }
 
 export { MapComponent };
