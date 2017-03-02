@@ -14,7 +14,6 @@ class ResourceList extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchResources(this.props.categoryId);
     this.generateMarkers([], this.props.location);
     console.log(typeof(FlatList), typeof(ResourceItem));
   }
