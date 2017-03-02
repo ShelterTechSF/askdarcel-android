@@ -16,6 +16,7 @@ class ResourceList extends Component {
   componentWillMount() {
     this.props.fetchResources(this.props.categoryId);
     this.generateMarkers([], this.props.location);
+    console.log(typeof(FlatList), typeof(ResourceItem));
   }
 
   generateMarkers(viewableItems = [], userLoc) {
@@ -77,7 +78,7 @@ class ResourceList extends Component {
         <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
         <FlatList 
           data={this.props.resources} 
-          ItemComponent={this.renderItemComponent}
+          renderItem={this.renderItemComponent}
           onViewableItemsChanged={this.onViewableItemsChanged.bind(this)}  />
       </View>
     );
