@@ -25,14 +25,14 @@ class MapComponent extends Component {
     return (
       <View style={mapStyles.container}>
         <MapView style={[mapStyles.map, style]} initialRegion={initialRegion} liteMode>
-          {this.state.markers.map(marker => {
+          {this.state.markers.map((marker, i) => {
             let coordinate = {
               latitude: Number.parseFloat(marker.coordinates.latitude),
               longitude: Number.parseFloat(marker.coordinates.longitude)
             };
 
             return (<MapView.Marker 
-              key={marker.coordinates.latitude}
+              key={marker.coordinates.latitude + i}
               coordinate={coordinate}
               title={marker.title}
             />)
