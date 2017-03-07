@@ -14,9 +14,7 @@ class ResourceList extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchResources(this.props.categoryId);
     this.generateMarkers([], this.props.location);
-    console.log(typeof(FlatList), typeof(ResourceItem));
   }
 
   generateMarkers(viewableItems = [], userLoc) {
@@ -39,8 +37,6 @@ class ResourceList extends Component {
         coordinates: {longitude: userLoc.longitude, latitude: userLoc.latitude}
       }]);
     }
-
-    console.log(markers);
 
     this.setState({ markers });
   }

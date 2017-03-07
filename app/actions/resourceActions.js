@@ -15,7 +15,21 @@ export function fetchResources(categoryId) {
         dispatch({type: FETCH_RESOURCES_FULFILLED, payload: response.resources})
       })
       .catch((err) => {
-        dispatch({type: FETCH_RESOURCES_REJECTED, payload: err})
+        dispatch({type: FETCH_RESOURCES_REJECTED, payload: err});
+      })
+  };
+};
+
+export function searchResources(query) {
+  return function(dispatch) {
+    dispatch({type: FETCH_RESOURCES});
+    fetch(API_URL + "/resources/search?query="+query)
+      .then((response) => response.json())
+      .then((response) => {
+        dispatch({type: FETCH_RESOURCES_FULFILLED, payload: response.resources});
+      })
+      .catch((err) => {
+        dispatch({type: FETCH_RESOURCES_REJECTED, payload: err});
       })
   };
 };

@@ -14,7 +14,7 @@ import { Actions } from 'react-native-router-flux';
 import { commonStyles } from '../styles';
 import Category from './Category';
 import { Loading } from './shared';
-import { fetchCategories, setCategory } from '../actions/categoryActions';
+import { fetchCategories, setCategory, fetchResources } from '../actions';
 
 
 class Categories extends Component {
@@ -26,6 +26,8 @@ class Categories extends Component {
   _onButtonPress(category, id) { 
     // Set the category in the state
     this.props.setCategory(category, id);
+    // Fetch the resources
+    this.props.fetchResources(id);
     // Navigate to the resources list
     Actions.resources();
   }
@@ -68,4 +70,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { fetchCategories, setCategory })(Categories);
+export default connect(mapStateToProps, { fetchCategories, setCategory, fetchResources })(Categories);
