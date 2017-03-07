@@ -9,6 +9,9 @@ const Splash = () => {
   return (
     <View>
       <Text>Welcome</Text>
+      <Button onPress={() => Actions.main()}>
+        Anonymous
+      </Button>
       <Button onPress={() => Actions.login()}>
         Login
       </Button>
