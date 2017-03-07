@@ -23,7 +23,7 @@ export function fetchResources(categoryId) {
 export function searchResources(query) {
   return function(dispatch) {
     dispatch({type: FETCH_RESOURCES});
-    fetch(API_URL + "/resources?query="+query)
+    fetch(API_URL + "/resources/search?query="+query)
       .then((response) => response.json())
       .then((response) => {
         dispatch({type: FETCH_RESOURCES_FULFILLED, payload: response.resources});

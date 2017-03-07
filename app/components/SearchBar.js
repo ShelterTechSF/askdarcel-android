@@ -21,6 +21,7 @@ class SearchBar extends Component {
     if(this.state.search.length) {
       // Set the category in the state
       this.props.searchResources(this.state.search);
+      this.setState({search: ''});
       // Navigate to the resources list
       Actions.resources();
     }
