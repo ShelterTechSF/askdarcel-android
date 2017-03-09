@@ -65,11 +65,13 @@ export function userLogin(email, password)  {
       })
     })
     .then(response => {
+      console.warn("got a response with status", response.status);
       if( response.status === 200) {
         dispatch({type: LOGIN_SUCCESS, payload: {email}});
         const headers = response.headers;
         this.setStorage('userToken', headers.get('access-token'));
       } else if( response.status === 401) {
+        console.warn("Oh no!");
         Alert.alert(
           'Problem with Login', 
           'Your email or password was incorrect', 

@@ -1,14 +1,16 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import { connect } from 'react-redux';
 import { Button, Input } from './shared';
 import { formStyles } from '../styles';
+import { userLogin } from '../actions';
 
 class Login extends Component {
   state = {
-    email: 'bob',
+    email: '',
     password: ''
   }
 
@@ -21,6 +23,7 @@ class Login extends Component {
   }
 
   _onSubmit() {
+    this.props.userLogin(this.state.email, this.state.password);
     this.setState({email: '', password: ''});
     Actions.main();
   }
@@ -49,4 +52,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default connect(null, { userLogin })(Login);
