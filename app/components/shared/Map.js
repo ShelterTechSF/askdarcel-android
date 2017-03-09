@@ -23,8 +23,8 @@ class MapComponent extends Component {
     initialRegion.latitude = Number.parseFloat(initialRegion.latitude);
     initialRegion.longitude = Number.parseFloat(initialRegion.longitude);
     return (
-      <View style={mapStyles.container}>
-        <MapView style={[mapStyles.map, style]} initialRegion={initialRegion} liteMode>
+      <View style={[mapStyles.container, style]}>
+        <MapView style={mapStyles.map} initialRegion={initialRegion} liteMode>
           {this.state.markers.map((marker, i) => {
             let coordinate = {
               latitude: Number.parseFloat(marker.coordinates.latitude),
