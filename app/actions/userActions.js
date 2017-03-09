@@ -69,11 +69,6 @@ export function userLogin(email, password)  {
         dispatch({type: LOGIN_SUCCESS, payload: {email}});
         const headers = response.headers;
         this.setStorage('userToken', headers.get('access-token'));
-        // localStorage.setItem('authHeaders', JSON.stringify({
-        //   "access-token":headers.get('access-token'),
-        //   client: headers.get('client'),
-        //   uid: headers.get('uid')
-        // }));
       } else if( response.status === 401) {
         Alert.alert(
           'Problem with Login', 
