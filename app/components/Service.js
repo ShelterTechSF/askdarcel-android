@@ -1,15 +1,14 @@
 import React from 'react';
-import {
-  Text,
-  View
-} from 'react-native';
+import { Text } from 'react-native';
+
+import { Card } from './shared';
 
 const Service = ({service}) => {
   return (
-    <View>
+    <Card>
       <Text>{service.name}</Text>
       <Text>{service.long_description}</Text>
-    </View>
+    </Card>
   );
 };
 
