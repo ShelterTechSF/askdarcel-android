@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux';
 
 import { commonStyles } from '../styles';
 import Category from './Category';
-import { Loading } from './shared';
+import { Loading, Card } from './shared';
 import { fetchCategories, setCategory, fetchResources } from '../actions';
 
 
@@ -41,7 +41,9 @@ class Categories extends Component {
     let categoryList = categories.map((category) =>  
       <TouchableHighlight onPress={this._onButtonPress.bind(this, category.name, category.id)} key={category.id}>
         <View>
-          <Category category={category}/>
+          <Card>
+            <Category category={category}/>
+          </Card>
         </View>
       </TouchableHighlight>
     )

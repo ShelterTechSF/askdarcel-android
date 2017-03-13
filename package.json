@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "android": "react-native run-android"
+    "android": "react-native run-android",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "dependencies": {
     "axios": "^0.13.1",
@@ -19,5 +23,11 @@
     "redux-promise": "^0.5.3",
     "redux-promise-middleware": "^3.3.2",
     "redux-thunk": "^2.1.0"
+  },
+  "devDependencies": {
+    "babel-jest": "18.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "18.1.0",
+    "react-test-renderer": "15.4.2"
   }
 }
