@@ -33,10 +33,9 @@ class ResourceDetail extends Component {
             <Text style={resourceStyles.name}>
               Details for {resource.name}
             </Text>
-            <Text style={resourceStyles.name}>
-              Website {resource.website}
+            <Text>
+              {resource.website}
             </Text>
-            <Text>Test</Text>
             {resource.services.map(service => <Service key={service.id} service={service} />)}
           </View>
         </ScrollView>
