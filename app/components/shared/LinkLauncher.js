@@ -12,4 +12,4 @@ class LinkLauncher extends Component {
   }
 }
 
-export default LinkLauncher;
+export { LinkLauncher };
