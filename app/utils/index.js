@@ -72,3 +72,7 @@ export function opensNextAt(schedule) {
 
   return nextOpen;
 };
+
+export function stripNumber(numString) {
+  return numString.match(/\d+/g).join('');
+};
