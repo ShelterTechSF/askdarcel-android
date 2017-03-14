@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class LinkLauncher extends Component {
   onPress() {
@@ -20,12 +21,9 @@ class LinkLauncher extends Component {
 
   render() {
     return (
-      <TouchableOpacity onPress={this.onPress.bind(this)}>
-        <View>
-          {this.props.imageSource && <Image source={this.props.imageSource} />}
-          {this.props.displayText && <Text>{this.props.displayText}</Text>}
-        </View>
-      </TouchableOpacity>
+      <Icon.Button name={this.props.iconName} backgroundColor="#3b5998" onPress={this.onPress.bind(this)}>
+        {this.props.displayText}
+      </Icon.Button>
     );
   }
 }
