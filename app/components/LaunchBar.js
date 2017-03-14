@@ -9,10 +9,10 @@ class LinkBar extends Component {
     const { resource } = this.props;
     let result = [];
     if(resource.website && resource.website.length) {
-      result.push(<LinkLauncher displayText={"website"} url={resource.website} />);
+      result.push(<LinkLauncher key={"web"} displayText={"website"} url={resource.website} />);
     } 
     if(resource.phones && resource.phones.length && resource.phones[0].number) {
-      result.push(<LinkLauncher displayText={"call"} url={'tel:' + stripNumber(resource.phones[0].number)} />);
+      result.push(<LinkLauncher key={"call"} displayText={"call"} url={'tel:' + stripNumber(resource.phones[0].number)} />);
     }
     return result;
   }
