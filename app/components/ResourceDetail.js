@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import { Card, Loading, MapComponent } from './shared';
 import Service from './Service';
+import LaunchBar from './LaunchBar';
 import { resourceStyles, commonStyles } from '../styles';
 
 class ResourceDetail extends Component {
@@ -33,10 +34,8 @@ class ResourceDetail extends Component {
             <Text style={resourceStyles.name}>
               Details for {resource.name}
             </Text>
+            <LaunchBar resource={resource} />
             <Card>
-              <Text>
-                {resource.website}
-              </Text>
               <Text>Description</Text>
               <Text>{resource.long_description}</Text>
             </Card>

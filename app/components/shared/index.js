@@ -4,3 +4,4 @@ export * from './Input';
 export * from './Loading';
 export * from './Map';
 export * from './Card';
+export * from './LinkLauncher';

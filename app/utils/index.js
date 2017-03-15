@@ -1,3 +1,4 @@
+import _ from 'lodash';
 /* Takes an array of objects in this format:
   {
     "id": 57,
@@ -7,7 +8,7 @@
   }
 */
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-var _ = require('lodash/core');
+const today = new Date();
 
 function getTime() {
   const today = new Date();
@@ -25,7 +26,7 @@ export function isOpen(schedule) {
 export function hoursToday(schedule) {
   // returns a string with either open-close or Closed Today
   const scheduleByDay = _.groupBy(schedule, 'day');
-  scheduleToday = scheduleByDay[days[new Date.getDay()]];
+  const scheduleToday = scheduleByDay[days[today.getDay()]];
   if (scheduleToday) {
     // Add mutiple hour ranges if there are 2+
     return _.reduce(scheduleToday, (str, entry) => {
@@ -37,7 +38,6 @@ export function hoursToday(schedule) {
 }
 
 export function opensNextAt(schedule) {
-  const today = new Date();
   const timeNow = getTime();
   const scheduleByDay = _.groupBy(schedule, 'day');
   let nextOpen = {time: 0, day: 'No Schedule Available'}
@@ -71,4 +71,8 @@ export function opensNextAt(schedule) {
   }
 
   return nextOpen;
+};
+
+export function stripNumber(numString) {
+  return numString.match(/\d+/g).join('');
 };

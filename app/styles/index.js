@@ -6,3 +6,4 @@ export * from './resource';
 export * from './button';
 export * from './input';
 export * from './form';
+export * from './linkbar';
