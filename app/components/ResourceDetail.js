@@ -21,8 +21,6 @@ class ResourceDetail extends Component {
       provider: "google",
       latitude,
       longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
     }
     let markers = [{coordinates: {latitude, longitude}, title: resource.name}];
 

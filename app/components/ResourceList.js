@@ -56,8 +56,6 @@ class ResourceList extends Component {
       provider: "google",
       latitude,
       longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
     };
 
     return (
