@@ -28,7 +28,9 @@ class ResourceDetail extends Component {
 
     return (
       <View style={resourceStyles.container}>
-        <MapComponent initialRegion={initialRegion} markers={markers} />
+        <MapComponent initialRegion={initialRegion} 
+                      markers={markers} 
+                      userLocation={this.props.userLocation}/>
         <ScrollView style={{flex: 2}}>
           <View>
             <Text style={resourceStyles.name}>
@@ -51,6 +53,7 @@ const mapStateToProps = state => {
   return {
     categoryId: state.category.id,
     categoryName: state.category.name,
+    userLocation: state.user.location
   };
 };
 
