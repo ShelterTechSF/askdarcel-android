@@ -20,7 +20,6 @@ class MapComponent extends Component {
   
   render() {
     let { initialRegion, style, userLocation } = this.props;
-    console.warn(JSON.stringify(userLocation));
     initialRegion.latitude = Number.parseFloat(initialRegion.latitude);
     initialRegion.longitude = Number.parseFloat(initialRegion.longitude);
     return (
@@ -39,8 +38,9 @@ class MapComponent extends Component {
             />)
           })}
           {userLocation && 
-            <Marker title="You are here" coordinate={{latitude: userLocation.latitude, longitude: userLocation.longitude}}>
-
+            <Marker title="You are here" 
+                    coordinate={{latitude: userLocation.latitude, longitude: userLocation.longitude}}>
+              <View style={mapStyles.userMarker} />
             </Marker>
           }
         </MapView>
