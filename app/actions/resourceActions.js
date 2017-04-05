@@ -5,6 +5,7 @@ import {
   SET_RESOURCE
 } from './actionTypes';
 import { API_URL, MAP_URL } from '../config';
+import { getPolylineCoordinates } from '../utils';
 
 export function fetchResources(categoryId) {
   return function(dispatch) {
@@ -46,7 +47,10 @@ export function getDirections(current, dest, mode) {
   return function(dispatch) {
     fetch(MAP_URL + `/directions/json?origin=${current.lat},${current.lng}&destination=${dest.lat},${dest.lng}&mode=${mode}`)
       .then((response) => response.json())
-      .then((response) => {console.log(response)})
+      .then((response) => {
+        // console.log(response);
+        console.log(getPolylineCoordinates(response.routes[0]));
+      })
       .catch((err) => {console.log(error)})
   };
 };

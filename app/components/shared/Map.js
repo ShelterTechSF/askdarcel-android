@@ -4,7 +4,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 import { mapStyles } from '../../styles';
 
 class MapComponent extends Component { 
@@ -34,7 +34,7 @@ class MapComponent extends Component {
   }
   
   render() {
-    let { initialRegion, style, userLocation } = this.props;
+    let { initialRegion, style, userLocation, route } = this.props;
     initialRegion = this.processInitialRegion(initialRegion);
     
     return (
@@ -57,6 +57,9 @@ class MapComponent extends Component {
                     coordinate={{latitude: userLocation.latitude, longitude: userLocation.longitude}}>
               <View style={mapStyles.userMarker} />
             </Marker>
+          }
+          {route &&
+            <Polyline coordinates={route} />
           }
         </MapView>
       </View>
