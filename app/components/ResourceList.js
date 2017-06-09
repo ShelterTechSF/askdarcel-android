@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import FlatList from 'react-native/Libraries/Experimental/FlatList';
 import ResourceItem from './ResourceItem';
-import MapView from 'react-native-maps';
 import { Loading, MapComponent } from './shared';
 import { fetchResources } from '../actions';
 
@@ -14,10 +13,10 @@ class ResourceList extends Component {
   }
 
   componentWillMount() {
-    this.generateMarkers([], this.props.location);
+    this.generateMarkers([]);
   }
 
-  generateMarkers(viewableItems = [], userLoc) {
+  generateMarkers(viewableItems = []) {
     let markers = viewableItems.map(viewable => {
       if (!viewable.item.address) {
         return null;
@@ -30,19 +29,11 @@ class ResourceList extends Component {
     });
 
     markers.filter(val => {return val !== null;} );
-
-    if (userLoc) {
-      markers = markers.concat([{
-        title: 'You are here', 
-        coordinates: {longitude: userLoc.longitude, latitude: userLoc.latitude}
-      }]);
-    }
-
     this.setState({ markers });
   }
 
   onViewableItemsChanged({ viewableItems, changed }) {
-    this.generateMarkers(viewableItems, this.props.location);
+    this.generateMarkers(viewableItems, this.props.userLocation);
   }
 
   renderItemComponent({item, index}) {
@@ -60,18 +51,18 @@ class ResourceList extends Component {
       );
     }
 
-    let { latitude, longitude } = this.props.location;
+    let { latitude, longitude } = this.props.userLocation || {latitude: 37.7759, longitude: -122.414};
     let initialRegion = {
       provider: "google",
       latitude,
       longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
     };
 
     return (
       <View>
-        <MapComponent initialRegion={initialRegion} markers={this.state.markers}/>
+        <MapComponent initialRegion={initialRegion} 
+                      markers={this.state.markers} 
+                      userLocation={this.props.userLocation}/>
         <FlatList 
           data={this.props.resources} 
           renderItem={this.renderItemComponent}
@@ -88,7 +79,7 @@ const mapStateToProps = state => {
     categoryName: state.category.name,
     error: state.resource.error,
     resources: state.resource.list,
-    location: state.user.location
+    userLocation: state.user.location
   };
 };
 

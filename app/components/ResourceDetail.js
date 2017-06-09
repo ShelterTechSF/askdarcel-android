@@ -10,9 +10,16 @@ import { Card, Loading, MapComponent } from './shared';
 import Service from './Service';
 import LaunchBar from './LaunchBar';
 import { resourceStyles, commonStyles } from '../styles';
+import { getDirections } from '../actions';
 
 class ResourceDetail extends Component {
   // Single resources for detail view
+  componentWillMount() {
+    let { userLocation, resource } = this.props;
+    let current = { lat: userLocation.latitude, lng: userLocation.longitude };
+    let dest = { lat: resource.address.latitude, lng: resource.address.longitude };
+    this.props.getDirections(current, dest, "walking");
+  }
 
   render() {
     let resource = this.props.resource;
@@ -21,14 +28,14 @@ class ResourceDetail extends Component {
       provider: "google",
       latitude,
       longitude,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
     }
     let markers = [{coordinates: {latitude, longitude}, title: resource.name}];
 
     return (
       <View style={resourceStyles.container}>
-        <MapComponent initialRegion={initialRegion} markers={markers} />
+        <MapComponent initialRegion={initialRegion} 
+                      markers={markers} 
+                      userLocation={this.props.userLocation}/>
         <ScrollView style={{flex: 2}}>
           <View>
             <Text style={resourceStyles.name}>
@@ -51,7 +58,8 @@ const mapStateToProps = state => {
   return {
     categoryId: state.category.id,
     categoryName: state.category.name,
+    userLocation: state.user.location
   };
 };
 
-export default connect(mapStateToProps)(ResourceDetail);
+export default connect(mapStateToProps, { getDirections })(ResourceDetail);

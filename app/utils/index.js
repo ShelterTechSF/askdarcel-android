@@ -76,3 +76,24 @@ export function opensNextAt(schedule) {
 export function stripNumber(numString) {
   return numString.match(/\d+/g).join('');
 };
+
+// Takes a single route object from google api
+// Returns an object with an array of coordinates, total time (sec), total distance (m)
+export function getPolylineCoordinates(routeObj) {
+  var result = {
+    coordinates: [],
+    duration: 0,
+    distance: 0
+  };
+  result = _.reduce(routeObj.legs, (acc, leg) => {
+    acc.coordinates.push({latitude: leg.start_location.lat, longitude: leg.start_location.lng});
+    _.each(leg.steps, (step) => {
+      acc.coordinates.push({latitude: step.end_location.lat, longitude: step.end_location.lng});
+      acc.duration += step.duration.value;
+      acc.distance += step.distance.value;
+    });
+    return acc;
+  }, result);
+
+  return result;
+}

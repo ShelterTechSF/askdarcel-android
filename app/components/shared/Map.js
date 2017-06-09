@@ -4,7 +4,7 @@ import {
   Dimensions
 } from 'react-native';
 
-import MapView from 'react-native-maps';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 import { mapStyles } from '../../styles';
 
 class MapComponent extends Component { 
@@ -17,11 +17,26 @@ class MapComponent extends Component {
       this.setState({ markers: nextProps.markers });
     }
   }
+
+  processInitialRegion(region = {}) {
+    const defaultValues = {
+      latitude: 37.7759,
+      longitude: -122.414,
+      latitudeDelta: 0.0523,
+      longitudeDelta: 0.042
+    };
+    let result = {...defaultValues, ...region};
+    result.latitude = Number.parseFloat(result.latitude);
+    result.longitude = Number.parseFloat(result.longitude);
+    result.latitudeDelta = Number.parseFloat(result.latitudeDelta);
+    result.longitudeDelta = Number.parseFloat(result.longitudeDelta);
+    return result;
+  }
   
   render() {
-    let { initialRegion, style } = this.props;
-    initialRegion.latitude = Number.parseFloat(initialRegion.latitude);
-    initialRegion.longitude = Number.parseFloat(initialRegion.longitude);
+    let { initialRegion, style, userLocation, route } = this.props;
+    initialRegion = this.processInitialRegion(initialRegion);
+    
     return (
       <View style={[mapStyles.container, style]}>
         <MapView style={mapStyles.map} initialRegion={initialRegion} liteMode>
@@ -31,12 +46,21 @@ class MapComponent extends Component {
               longitude: Number.parseFloat(marker.coordinates.longitude)
             };
 
-            return (<MapView.Marker 
+            return (<Marker 
               key={marker.coordinates.latitude + i}
               coordinate={coordinate}
               title={marker.title}
             />)
           })}
+          {userLocation && 
+            <Marker title="You are here" 
+                    coordinate={{latitude: userLocation.latitude, longitude: userLocation.longitude}}>
+              <View style={mapStyles.userMarker} />
+            </Marker>
+          }
+          {route &&
+            <Polyline coordinates={route} />
+          }
         </MapView>
       </View>
     );
